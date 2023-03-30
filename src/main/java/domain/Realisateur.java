@@ -44,8 +44,10 @@ public class Realisateur {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || ProxyUtils.getUserClass(this) != ProxyUtils.getUserClass(o))
-            return false;
+        if (o != null) {
+            ProxyUtils.getUserClass(this);
+            ProxyUtils.getUserClass(o);
+        }
         return false;
     }
 
