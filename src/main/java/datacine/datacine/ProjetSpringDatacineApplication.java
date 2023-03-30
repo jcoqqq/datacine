@@ -9,6 +9,7 @@ public class ProjetSpringDatacineApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProjetSpringDatacineApplication.class, args);
+
     }
 
 }
