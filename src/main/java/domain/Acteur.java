@@ -19,7 +19,7 @@ public class Acteur {
     @Id
     @GeneratedValue
     @Column(name = "id_acteur")
-    private UUID id;
+    private int id;
 
     @Column(name = "prenom")
     private String prenom;
@@ -31,8 +31,8 @@ public class Acteur {
     private LocalDate dateNaissance;
 
     @Column(name = "id_films_tournes")
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_films_tournes")
+    @OneToMany
+    @JoinColumn(name = "id_film")
     @ToString.Exclude
     private List<Film> filmsTournes;
 

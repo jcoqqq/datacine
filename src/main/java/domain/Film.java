@@ -5,8 +5,6 @@ import org.springframework.data.util.ProxyUtils;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,14 +17,15 @@ public class Film {
     @Id
     @GeneratedValue
     @Column(name = "id_film")
-    private UUID id;
+    private int id;
 
-    @Column(name = "realisateur")
+    @OneToOne
+    @JoinColumn(name = "id_realisateur")
     private Realisateur realisateur;
 
+    @OneToMany
     @Column(name = "id_acteurs")
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_acteurs")
+    @JoinColumn(name = "id_acteur")
     @ToString.Exclude
     private List<Acteur> idActeurs;
 
@@ -35,8 +34,7 @@ public class Film {
         if (this == o) return true;
         if (o == null || ProxyUtils.getUserClass(this) != ProxyUtils.getUserClass(o))
             return false;
-        Film film = (Film) o;
-        return getId() != null && Objects.equals(getId(), film.getId());
+        return false;
     }
 
     @Override

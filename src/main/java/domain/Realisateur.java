@@ -6,8 +6,6 @@ import org.springframework.data.util.ProxyUtils;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -20,7 +18,7 @@ public class Realisateur {
     @Id
     @GeneratedValue
     @Column(name = "id_realisateur")
-    private UUID id;
+    private int id;
 
     @Column(name = "prenom")
     private String prenom;
@@ -31,15 +29,15 @@ public class Realisateur {
     @Column(name = "date_naissance")
     private LocalDate dateNaissance;
 
-    @Column(name = "id_films_tournes_realises")
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_films_tournes_realises")
+    @OneToMany
+    @Column(name = "id_films_realises")
+    @JoinColumn(name = "id_film")
     @ToString.Exclude
     private List<Film> filmsRealises;
 
+    @OneToMany
     @Column(name = "id_films_tournes")
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_films_tournes")
+    @JoinColumn(name = "id_film")
     @ToString.Exclude
     private List<Film> filmsTournes;
 
@@ -48,8 +46,7 @@ public class Realisateur {
         if (this == o) return true;
         if (o == null || ProxyUtils.getUserClass(this) != ProxyUtils.getUserClass(o))
             return false;
-        Realisateur that = (Realisateur) o;
-        return getId() != null && Objects.equals(getId(), that.getId());
+        return false;
     }
 
     @Override
