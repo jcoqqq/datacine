@@ -1,4 +1,4 @@
-package domain;
+package datacine.domain;
 
 import lombok.Data;
 

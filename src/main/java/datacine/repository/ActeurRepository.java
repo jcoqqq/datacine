@@ -1,6 +1,6 @@
-package repository;
+package datacine.repository;
 
-import domain.Acteur;
+import datacine.domain.Acteur;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import repository.ActeurRepository;
-import service.DataBaseService;
+import datacine.repository.ActeurRepository;
+import datacine.service.DataBaseService;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.mock;

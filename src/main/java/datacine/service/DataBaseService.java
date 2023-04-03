@@ -1,15 +1,11 @@
-package service;
+package datacine.service;
 
-import domain.Acteur;
+import datacine.domain.Acteur;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import repository.ActeurRepository;
-import rest.DataBaseRest;
+import datacine.repository.ActeurRepository;
 
 @Service
-@Slf4j
 @AllArgsConstructor
 public class DataBaseService {
 
@@ -21,6 +17,16 @@ public class DataBaseService {
         acteur.setNom("Dujardin");
         try {
             acteurRepository.save(acteur);
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Boolean getActeur() {
+        try {
+            Iterable<Acteur> acteurs = acteurRepository.findAll();
             return true;
         }
         catch (Exception e) {

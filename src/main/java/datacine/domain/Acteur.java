@@ -1,24 +1,24 @@
-package domain;
+package datacine.domain;
 
 import lombok.*;
-import org.springframework.data.util.ProxyUtils;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "realisateur")
-public class Realisateur {
+@Table(name = "acteur")
+public class Acteur {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_realisateur")
-    private int id;
+    @Column(name = "id_acteur")
+    private int id_acteur;
 
     @Column(name = "prenom")
     private String prenom;
@@ -29,14 +29,8 @@ public class Realisateur {
     @Column(name = "date_naissance")
     private LocalDate dateNaissance;
 
-    @OneToMany
-    @Column(name = "id_films_realises")
-    @JoinColumn(name = "id_film")
-    @ToString.Exclude
-    private List<Film> filmsRealises;
-
-    @OneToMany
     @Column(name = "id_films_tournes")
+    @OneToMany
     @JoinColumn(name = "id_film")
     @ToString.Exclude
     private List<Film> filmsTournes;
@@ -44,15 +38,13 @@ public class Realisateur {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o != null) {
-            ProxyUtils.getUserClass(this);
-            ProxyUtils.getUserClass(o);
-        }
-        return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        Acteur acteur = (Acteur) o;
+        return Objects.equals(id_acteur, acteur.id_acteur) && Objects.equals(prenom, acteur.prenom) && Objects.equals(nom, acteur.nom) && Objects.equals(dateNaissance, acteur.dateNaissance) && Objects.equals(filmsTournes, acteur.filmsTournes);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return Objects.hash(id_acteur, prenom, nom, dateNaissance, filmsTournes);
     }
 }
