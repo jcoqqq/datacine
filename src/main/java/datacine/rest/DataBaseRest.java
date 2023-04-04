@@ -4,14 +4,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @RequestMapping(value = "/v1")
 public interface DataBaseRest {
 
-    @PostMapping(value = "add/acteur")
+    @PostMapping(value = "/add/acteur")
     Boolean addActeur();
 
-    @GetMapping(value = "get/acteur")
+    @GetMapping(value = "/get/acteur")
     Boolean getActeur();
+
 
 }
