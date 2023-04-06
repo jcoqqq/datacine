@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cinéma - Page d'accueil</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+  <div class="logo">
+    <H1>DATACINE</H1>
+  </div>
+
+
+        <div class="search">
+          <form>
+            <input type="text" placeholder="Rechercher...">
+            <button type="submit">Go</button>
+          </form>
+        </div>
+
+  <div class="login">
+    <a href="connexion">Se connecter</a>
+    <a href="inscription">S'inscrire</a>
+  </div>
+</header>
+  <title>Tableau avec images cliquables</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+  <table>
+    <tr th:each="d : ${data}">
+      <td th:utext="${d.gethtml()}"></td> <!-- Utiliser la méthode getHtml() pour récupérer le HTML -->
+    </tr>
+  </table>
+
+
+
+
+  <footer>
+
+</footer>
+</body>
+</html>

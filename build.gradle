@@ -33,6 +33,7 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '3.0.5'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    testImplementation 'junit:junit:4.13.1'
 
 // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
   //  implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '11.0.0-M4'//
