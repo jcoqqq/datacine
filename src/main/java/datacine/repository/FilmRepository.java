@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface FilmRepository extends CrudRepository<Film, Integer> {
 
-    @Override
-    Optional<Film> findById(Integer integer);
+    Boolean deleteById_film(int id);
 }

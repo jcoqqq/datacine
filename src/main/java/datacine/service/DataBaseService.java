@@ -75,4 +75,54 @@ public class DataBaseService {
             return false;
         }
     }
+
+    public Boolean addFilm() {
+        Film film = new Film();
+
+        try {
+            filmRepository.save(film);
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Boolean addRealisateur() {
+        Realisateur realisateur = new Realisateur();
+        try {
+            realisateurRepository.save(realisateur);
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Boolean addAvis() {
+        Avis avis = new Avis();
+        try {
+            avisRepository.save(avis);
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Boolean deleteAvis(int id) {
+        return avisRepository.deleteAvisById_avis(id);
+    }
+
+    public Boolean deleteActeur(int id) {
+        return acteurRepository.deleteById_acteur(id);
+    }
+
+    public Boolean deleteFilm(int id) {
+        return filmRepository.deleteById_film(id);
+    }
+
+    public Boolean deleteRealisateur(int id) {
+        return realisateurRepository.deleteRealisateurById_realisateur(id);
+    }
 }

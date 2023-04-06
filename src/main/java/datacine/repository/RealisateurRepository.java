@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface RealisateurRepository extends CrudRepository<Realisateur, Integer> {
 
-    @Override
-    Optional<Realisateur> findById(Integer integer);
+    Boolean deleteRealisateurById_realisateur(int id);
 }
