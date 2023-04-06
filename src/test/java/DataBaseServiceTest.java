@@ -1,3 +1,4 @@
+import datacine.repository.FilmRepository;
 import datacine.repository.RealisateurRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,12 +16,15 @@ class DataBaseServiceTest {
 
     RealisateurRepository realisateurRepository;
 
+    FilmRepository filmRepository;
+
     @BeforeEach
     void init() {
         acteurRepository = mock(ActeurRepository.class);
         realisateurRepository = mock(RealisateurRepository.class);
+        filmRepository = mock(FilmRepository.class);
 
-        dataBaseService = new DataBaseService(acteurRepository, realisateurRepository);
+        dataBaseService = new DataBaseService(acteurRepository, realisateurRepository, filmRepository);
     }
 
     @Test
