@@ -7,28 +7,24 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
 @Entity
 @Table(name = "film")
 public class Film {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_film")
     private int id;
 
+    @Column(name = "nom")
+    private String nom;
+
     @OneToMany
-    @Column(name = "id_realisateurs")
     @JoinColumn(name = "id_realisateur")
-    @ToString.Exclude
     private List<Realisateur> realisateurs;
 
     @OneToMany
-    @Column(name = "id_acteurs")
     @JoinColumn(name = "id_acteur")
-    @ToString.Exclude
     private List<Acteur> acteurs;
-
 
 }

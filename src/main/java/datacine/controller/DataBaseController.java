@@ -20,4 +20,14 @@ public class DataBaseController implements DataBaseRest {
     public Boolean getActeur() {
         return dataBaseService.getActeur();
     }
+
+    @Override
+    public Boolean getReal() {
+        return dataBaseService.getReal();
+    }
+
+    @Override
+    public Boolean getFilm() {
+        return dataBaseService.getFilm();
+    }
 }

@@ -5,20 +5,17 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
 @Entity
 @Table(name = "acteur")
 public class Acteur {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_acteur")
-    private int id_acteur;
+    private int id;
 
     @Column(name = "prenom")
     private String prenom;
@@ -29,22 +26,8 @@ public class Acteur {
     @Column(name = "date_naissance")
     private LocalDate dateNaissance;
 
-    @Column(name = "id_films_tournes")
     @OneToMany
     @JoinColumn(name = "id_film")
-    @ToString.Exclude
     private List<Film> filmsTournes;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Acteur acteur = (Acteur) o;
-        return Objects.equals(id_acteur, acteur.id_acteur) && Objects.equals(prenom, acteur.prenom) && Objects.equals(nom, acteur.nom) && Objects.equals(dateNaissance, acteur.dateNaissance) && Objects.equals(filmsTournes, acteur.filmsTournes);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id_acteur, prenom, nom, dateNaissance, filmsTournes);
-    }
 }

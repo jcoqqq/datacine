@@ -14,4 +14,10 @@ public interface DataBaseRest {
     @GetMapping(value = "get/acteur")
     Boolean getActeur();
 
+    @GetMapping(value = "get/real")
+    Boolean getReal();
+
+    @GetMapping(value = "get/film")
+    Boolean getFilm();
+
 }

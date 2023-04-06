@@ -1,5 +1,6 @@
-package datacine.domain;
+package datacine.dto;
 
+import datacine.domain.Film;
 import lombok.Data;
 
 
@@ -10,15 +11,13 @@ import java.util.UUID;
 @Data
 public class RealisateurDto {
 
-    private UUID id;
-
     private String prenom;
 
     private String nom;
 
     private LocalDate dateNaissance;
 
-    private List<Film> filmsRealises;
+    private List<FilmDto> filmsRealises;
 
-    private List<Film> filmsTournes;
+    private List<FilmDto> filmsTournes;
 }
