@@ -25,9 +25,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '3.0.5'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    testImplementation 'junit:junit:4.13.1'
+
+// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+  //  implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '11.0.0-M4'//
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.mysql:mysql-connector-j'

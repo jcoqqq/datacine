@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Connexion</title>
+  <script src="/js/login.js"></script>
+  <link rel="stylesheet"  href="/css/login.css">
+</head>
+<body>
+
+<div class="form-container sign-in-container">
+  <form action="" method="post">
+    <h1>Connexion</h1>
+    <div class="social-container">
+
+    </div>
+    <input type="email" name="mail" placeholder="Email" />
+    <input type="password" name="password" placeholder="Password" />
+
+    <input type="submit" name="login" value="connectez-vous" />
+  </form>
+</div>
+<div class="overlay-container">
+  <div class="overlay">
+    <div class="overlay-panel overlay-left">
+
+      <button class="ghost" id="signIn">Sign In</button>
+    </div>
+    <div class="overlay-panel overlay-right">
+      <p>Si vous n'avez pas de compte inscrivez-vous</p>
+
+      <button  onclick="window.location.href = '/inscription';" class="ghost" id="signUp">Sign IN</button>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
