@@ -1,8 +1,10 @@
 package datacine.service;
 
 import datacine.domain.Acteur;
+import datacine.domain.Avis;
 import datacine.domain.Film;
 import datacine.domain.Realisateur;
+import datacine.repository.AvisRepository;
 import datacine.repository.FilmRepository;
 import datacine.repository.RealisateurRepository;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,8 @@ public class DataBaseService {
     final RealisateurRepository realisateurRepository;
 
     final FilmRepository filmRepository;
+
+    final AvisRepository avisRepository;
 
     public Boolean addActeur() {
         Acteur acteur = new Acteur();
@@ -62,4 +66,13 @@ public class DataBaseService {
         }
     }
 
+    public Boolean getAvis() {
+        try {
+            Iterable<Avis> avis = avisRepository.findAll();
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
 }

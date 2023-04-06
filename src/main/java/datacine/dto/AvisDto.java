@@ -1,7 +1,5 @@
 package datacine.dto;
 
-import javax.persistence.Column;
-
 public class AvisDto {
 
     private String texte;

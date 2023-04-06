@@ -33,4 +33,9 @@ public class DataBaseController implements DataBaseRest {
     public Boolean getFilm() {
         return dataBaseService.getFilm();
     }
+
+    @Override
+    public Boolean getAvis() {
+        return dataBaseService.getAvis();
+    }
 }

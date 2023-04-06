@@ -6,8 +6,6 @@ import datacine.domain.Realisateur;
 import datacine.dto.AvisDto;
 import datacine.dto.FilmDto;
 import datacine.dto.RealisateurDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,12 +1,7 @@
 package datacine.dto;
 
-import datacine.domain.Film;
-import lombok.Data;
-
-
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 public class RealisateurDto {
 

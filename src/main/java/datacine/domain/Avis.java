@@ -14,7 +14,7 @@ public class Avis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_avis")
-    private int id;
+    private int id_avis;
 
     @Column(name = "texte")
     private String texte;

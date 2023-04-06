@@ -15,7 +15,7 @@ public class Acteur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_acteur")
-    private int id;
+    private int id_acteur;
 
     @Column(name = "prenom")
     private String prenom;
@@ -26,7 +26,7 @@ public class Acteur {
     @Column(name = "date_naissance")
     private LocalDate dateNaissance;
 
-    @OneToMany
+    @ManyToMany(mappedBy = "acteurs")
     @JoinColumn(name = "id_film")
     private List<Film> filmsTournes;
 

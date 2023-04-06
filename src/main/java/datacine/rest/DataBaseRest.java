@@ -23,4 +23,6 @@ public interface DataBaseRest {
     @GetMapping(value = "get/film")
     Boolean getFilm();
 
+    @GetMapping(value = "get/avis")
+    Boolean getAvis();
 }

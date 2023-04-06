@@ -2,15 +2,12 @@ package datacine.mapping;
 
 import datacine.domain.Acteur;
 import datacine.domain.Avis;
+import datacine.domain.Film;
 import datacine.domain.Realisateur;
 import datacine.dto.ActeurDto;
 import datacine.dto.AvisDto;
-import datacine.dto.RealisateurDto;
-import org.mapstruct.Mapper;
-
-import datacine.domain.Film;
 import datacine.dto.FilmDto;
-import org.mapstruct.ReportingPolicy;
+import datacine.dto.RealisateurDto;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,12 +2,8 @@ package mapper;
 
 import datacine.domain.Acteur;
 import datacine.domain.Film;
-import datacine.domain.Realisateur;
 import datacine.dto.ActeurDto;
 import datacine.mapping.ActeurMapper;
-import datacine.mapping.FilmMapper;
-import datacine.mapping.RealisateurMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -22,7 +18,7 @@ class MapperTest {
         film.setNom("7");
 
         Acteur acteur = new Acteur();
-        acteur.setId(2);
+        acteur.setId_acteur(2);
         acteur.setNom("Duj");
         acteur.setPrenom("Jan");
         acteur.setFilmsTournes(Collections.singletonList(film));

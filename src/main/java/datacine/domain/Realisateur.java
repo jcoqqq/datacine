@@ -16,7 +16,7 @@ public class Realisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@org.springframework.data.annotation.Id
     @Column(name = "id_realisateur")
-    private int id;
+    private int id_realisateur;
 
     @Column(name = "prenom")
     private String prenom;
@@ -27,11 +27,10 @@ public class Realisateur {
     @Column(name = "date_naissance")
     private LocalDate dateNaissance;
 
-    @OneToMany
+    @ManyToMany
     @JoinColumn(name = "id_film")
     private List<Film> filmsRealises;
 
-    @OneToMany
-    @JoinColumn(name = "id_avis")
+    @OneToMany(mappedBy = "realisateur")
     private List<Avis> avis;
 }
