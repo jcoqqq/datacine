@@ -1,12 +1,30 @@
 package datacine.mapping;
 
 import datacine.domain.Acteur;
+import datacine.domain.Film;
 import datacine.dto.ActeurDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
+import datacine.dto.FilmDto;
 
-@Mapper(uses = {FilmMapper.class}, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface ActeurMapper {
+import java.util.ArrayList;
+import java.util.List;
 
-    ActeurDto acteurToDto(Acteur acteur);
+public class ActeurMapper {
+
+    public static ActeurDto acteurToDto(Acteur acteur) {
+        ActeurDto acteurDto = new ActeurDto();
+
+        acteurDto.setNom(acteur.getNom());
+        acteurDto.setPrenom(acteur.getPrenom());
+        acteurDto.setDateNaissance(acteur.getDateNaissance());
+
+        List<FilmDto> filmDtoList = new ArrayList<>();
+
+        for (Film film : acteur.getFilmsTournes()) {
+            filmDtoList.add(FilmMapper.filmToDto(film));
+        }
+
+        acteurDto.setFilmsTournes(filmDtoList);
+
+        return acteurDto;
+    }
 }

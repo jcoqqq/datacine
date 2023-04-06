@@ -25,9 +25,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    //mapstruct
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.mysql:mysql-connector-j'

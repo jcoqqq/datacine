@@ -8,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-@Data
 public class FilmDto {
 
     private String nom;
@@ -16,4 +15,28 @@ public class FilmDto {
     private List<RealisateurDto> realisateurs;
 
     private List<ActeurDto> acteurs;
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public List<RealisateurDto> getRealisateurs() {
+        return realisateurs;
+    }
+
+    public void setRealisateurs(List<RealisateurDto> realisateurs) {
+        this.realisateurs = realisateurs;
+    }
+
+    public List<ActeurDto> getActeurs() {
+        return acteurs;
+    }
+
+    public void setActeurs(List<ActeurDto> acteurs) {
+        this.acteurs = acteurs;
+    }
 }
