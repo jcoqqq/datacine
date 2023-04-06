@@ -16,6 +16,16 @@ public class FilmDto {
 
     private List<ActeurDto> acteurs;
 
+    private List<AvisDto> avis;
+
+    public List<AvisDto> getAvis() {
+        return avis;
+    }
+
+    public void setAvis(List<AvisDto> avis) {
+        this.avis = avis;
+    }
+
     public String getNom() {
         return nom;
     }

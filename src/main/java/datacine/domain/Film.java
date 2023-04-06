@@ -27,4 +27,7 @@ public class Film {
     @JoinColumn(name = "id_acteur")
     private List<Acteur> acteurs;
 
+    @OneToMany
+    @JoinColumn(name = "id_avis")
+    private List<Avis> avis;
 }

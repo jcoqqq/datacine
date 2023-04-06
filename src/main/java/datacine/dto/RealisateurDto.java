@@ -18,6 +18,16 @@ public class RealisateurDto {
 
     private List<FilmDto> filmsRealises;
 
+    private List<AvisDto> avis;
+
+    public List<AvisDto> getAvis() {
+        return avis;
+    }
+
+    public void setAvis(List<AvisDto> avis) {
+        this.avis = avis;
+    }
+
     public String getPrenom() {
         return prenom;
     }

@@ -31,4 +31,7 @@ public class Realisateur {
     @JoinColumn(name = "id_film")
     private List<Film> filmsRealises;
 
+    @OneToMany
+    @JoinColumn(name = "id_avis")
+    private List<Avis> avis;
 }

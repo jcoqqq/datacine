@@ -1,7 +1,9 @@
 package datacine.mapping;
 
+import datacine.domain.Avis;
 import datacine.domain.Film;
 import datacine.domain.Realisateur;
+import datacine.dto.AvisDto;
 import datacine.dto.FilmDto;
 import datacine.dto.RealisateurDto;
 import org.mapstruct.Mapper;
@@ -25,7 +27,15 @@ public class RealisateurMapper {
             filmsRealises.add(FilmMapper.filmToDto(film));
         }
 
+        List<AvisDto> avisDtos = new ArrayList<>();
+
+        if (realisateur.getAvis() != null)
+            for (Avis avis : realisateur.getAvis()) {
+                avisDtos.add(AvisMapper.avisToDto(avis));
+            }
+
         realisateurDto.setFilmsRealises(filmsRealises);
+        realisateurDto.setAvis(avisDtos);
 
         return realisateurDto;
     }
