@@ -1,111 +1,122 @@
 <!DOCTYPE html>
-<html>
 <head>
+    <title>Cinéma - Page d'accueil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/filmrea.css">
+
+
+</head>
+
     <title>Ma page</title>
-    <style>
-        /* CSS pour aligner les éléments verticalement */
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        /* CSS pour la section des images */
-        .images {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 80%;
-            margin-top: 50px;
-        }
-        .image {
-            width: 45%;
-            height: auto;
-        }
-        /* CSS pour la section des commentaires */
-        .commentaires {
-            width: 80%;
-            margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .scroll {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            overflow-x: scroll;
-        }
-        .image-miniature {
-            width: 15%;
-            height: auto;
-        }
-        /* CSS pour la section de publication d'avis */
-        .avis {
-            width: 80%;
-            margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .publication {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-top: 20px;
-        }
-        .avis-texte {
-            width: 70%;
-            height: 100px;
-            margin-right: 20px;
-            resize: none;
-        }
-        .avis-bouton {
-            padding: 10px;
-            border-radius: 5px;
-            background-color: blue;
-            color: white;
-            cursor: pointer;
-        }
-        /* CSS pour la section des avis des utilisateurs */
-        .avis-utilisateurs {
-            width: 80%;
-            margin-top: 50px;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-        }
-        .afficher-bouton {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: blue;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+
 </head>
 <body>
-<!-- Section des images -->
+<header>
+    <div class="logo">
+        <H1>DATACINE</H1>
+    </div>
+
+    <div class="search">
+        <input type="text" id="search" name="search" placeholder="Rechercher...">
+        <input type="submit" value="Envoyer" onclick="window.location.href='/search/' + document.getElementById('search').value;">
+    </div>
+
+    <div class="login">
+        <a href="/connexion">Se connecter</a>
+        <a href="/inscription">S'inscrire</a>
+    </div>
+</div>
+</header>
+    <div class="disposition">
+
+    <!-- Section des images -->
 <div class="images">
     <img class="image" src="image1.jpg" alt="Image 1">
     <div>
         <p>12 commentaires</p>
         <p>Description du fil</p>
     </div>
-    <img class="image" src="image2.jpg" alt="Image 2">
 </div>
 <!-- Section des commentaires -->
-<div class="commentaires">
+<div class="imagefilmrea">
     <div class="scroll">
+        <div>
         <img class="image-miniature" src="image1.jpg" alt="Image 1 miniature">
+            <p>hello</p>
+        </div>
         <img class="image-miniature" src="image2.jpg" alt="Image 2 miniature">
         <img class="image-miniature" src="image3.jpg" alt="Image 3 miniature">
+
         <img class="image-miniature" src="image4.jpg" alt="Image 4 miniature">
+
         <img class="image-miniature" src="image5.jpg" alt="Image 5 miniature">
+        <img class="image-miniature" src="image6.jpg" alt="Image 6 miniature">
+
     </div>
 </div>
-<!-- Section de publication d'avis -->
-<div class="avis">
-      <textarea class="avis-text></textarea>
+        <!-- Div pour ajouter un commentaire -->
+        <form class="commentaires">
+
+            <div class="ajouter-commentaire">
+                <form action="/v1/add/film" method="post">
+                <textarea name="description" placeholder="Ajouter un commentaire"></textarea>
+                    <div>
+                        <!-- Notation en étoiles -->
+                        <div class="rating">
+                            <input type="radio" name="note" value="5" id="star5" />
+                            <label for="star5">&#9733;</label>
+                            <input type="radio" name="note" value="4" id="star4" />
+                            <label for="star4">&#9733;</label>
+                            <input type="radio" name="note" value="3" id="star3" />
+                            <label for="star3">&#9733;</label>
+                            <input type="radio" name="note" value="2" id="star2" />
+                            <label for="star2">&#9733;</label>
+                            <input type="radio" name="note" value="1" id="star1" />
+                            <label for="star1">&#9733;</label>
+                        </div>
+                        <p>Votre note : <span id="note-value">-</span></p>
+                    </div>
+               <input type="submit" value="valider">
+            </div>
+        </form>
+            <!-- Div pour afficher les commentaires des autres personnes -->
+            <div class="liste-commentaires">
+                <div>
+                    <p>Commentaire de l'utilisateur</p>
+                    <a href="#">Supprimer</a>
+                </div>
+                <div>
+                    <p>Commentaire d'un autre utilisateur</p>
+                    <a href="#">Supprimer</a>
+                </div>
+            </div>
+            <button id="bouton-afficher-commentaires">Afficher les commentaires</button>
+        </div>
+        <script>
+            // JS pour le bouton d'affichage/cachage des commentaires
+            const boutonAfficher = document.querySelector("#bouton-afficher-commentaires");
+            const divCommentaires = document.querySelector(".liste-commentaires");
+
+            boutonAfficher.addEventListener("click", () => {
+                if (divCommentaires.style.display === "none") {
+                    divCommentaires.style.display = "flex";
+                    boutonAfficher.textContent = "Cacher les commentaires";
+                } else {
+                    divCommentaires.style.display = "none";
+                    boutonAfficher.textContent = "Afficher les commentaires";
+                }
+            });
+            const ratingInputs = document.querySelectorAll('input[type="radio"]');
+            const noteValue = document.querySelector("#note-value");
+
+            ratingInputs.forEach((input) => {
+                input.addEventListener("change", () => {
+                    noteValue.textContent = input.value;
+                });
+            });
+        </script>
+</div>
+</body>
+</html>

@@ -35,11 +35,33 @@ public class FrontController {
         modelAndView.setViewName(verifpage);
         return modelAndView;
     }
+    @RequestMapping(value = "/search/{search}")
+    public ModelAndView search(@PathVariable(required = false,name="search") String search, Model model) {
+
+        Datafront data = new Datafront();
+        data.search(search);
+        System.out.println(data.gethtml());
+        model.addAttribute("data", data);
+        // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/css/{fichier}")
     public String css(@PathVariable(required = false,name="fichier") String fichier)  {
             String contenu=redirect.chemincss(fichier);
             return contenu;
+    }
+    @GetMapping("/film")
+    public ModelAndView test(@PathVariable(required = false,name="page") String page, Model model) {
+
+        // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("filmrea");
+        return modelAndView;
     }
     @RequestMapping(value = "/js/{fichier}")
     public String js(@PathVariable(required = false,name="fichier") String fichier)  {

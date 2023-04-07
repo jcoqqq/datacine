@@ -48,4 +48,14 @@ public class Datafront {
 
     }
 
+    public void search(String search) {
+
+        monDictionnaire.put(0, "film a "+search);
+        monDictionnaire.put(8, "film v");
+        monDictionnaire.put(5, "3test");
+        monDictionnaire.put(4, "4hello");
+        monDictionnaire.put(10, "5bonjour");
+        monDictionnaire.put(13, "6test");
+        generateHtml();
+    }
 }

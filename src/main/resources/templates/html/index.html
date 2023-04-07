@@ -14,15 +14,14 @@
 
 
         <div class="search">
-          <form>
-            <input type="text" placeholder="Rechercher...">
-            <button type="submit">Go</button>
-          </form>
+          <input type="text" id="searchBox">
+          <input type="submit" value="Envoyer" onclick="window.location.href='/search/' + document.getElementById('searchBox').value;">
+
         </div>
 
   <div class="login">
-    <a href="connexion">Se connecter</a>
-    <a href="inscription">S'inscrire</a>
+    <a href="/connexion">Se connecter</a>
+    <a href="/inscription">S'inscrire</a>
   </div>
 </header>
   <title>Tableau avec images cliquables</title>
