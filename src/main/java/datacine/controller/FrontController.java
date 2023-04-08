@@ -54,8 +54,8 @@ public class FrontController {
             String contenu=redirect.chemincss(fichier);
             return contenu;
     }
-    @GetMapping("/film")
-    public ModelAndView test(@PathVariable(required = false,name="page") String page, Model model) {
+    @RequestMapping("/film/{id}")
+    public ModelAndView film(@PathVariable(required = false,name="id") String id, Model model) {
 
         // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
 

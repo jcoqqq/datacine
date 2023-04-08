@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/filmrea.css">
+    <link rel="stylesheet" href="/css/search.css">
+
 
 
 </head>
@@ -19,8 +21,14 @@
     </div>
 
     <div class="search">
-        <input type="text" id="search" name="search" placeholder="Rechercher...">
-        <input type="submit" value="Envoyer" onclick="window.location.href='/search/' + document.getElementById('search').value;">
+        <input type="text" id="search-input" placeholder="Rechercher votre film">
+
+        <button> <input type="submit" value="Envoyer" onclick="window.location.href='/search/' + document.getElementById('search-input').value;">
+        </button>
+        <ul id="search-results"></ul>
+        <script src="/js/search.js"></script>
+        <script src="/js/filmrea.js"></script>
+
     </div>
 
     <div class="login">
@@ -39,7 +47,6 @@
         <p>Description du fil</p>
     </div>
 </div>
-<!-- Section des commentaires -->
 <div class="imagefilmrea">
     <div class="scroll">
         <div>
@@ -57,11 +64,12 @@
     </div>
 </div>
         <!-- Div pour ajouter un commentaire -->
-        <form class="commentaires">
+        <div class="commentaires">
 
             <div class="ajouter-commentaire">
-                <form action="/v1/add/film" method="post">
-                <textarea name="description" placeholder="Ajouter un commentaire"></textarea>
+                <button id="toggle-comment">Écrire un commentaire</button>
+                <form action="/v1/add/film" method="post" id="comment-form">
+                    <textarea name="description" placeholder="Ajouter un commentaire"></textarea>
                     <div>
                         <!-- Notation en étoiles -->
                         <div class="rating">
@@ -78,9 +86,20 @@
                         </div>
                         <p>Votre note : <span id="note-value">-</span></p>
                     </div>
-               <input type="submit" value="valider">
+                    <input type="submit" value="valider">
+                </form>
             </div>
-        </form>
+
+            <style>
+                #comment-form {
+                    display: none;
+                }
+
+            </style>
+
+        </div>
+    </div>
+<center><button id="bouton-afficher-commentaires">Afficher les commentaires</button>
             <!-- Div pour afficher les commentaires des autres personnes -->
             <div class="liste-commentaires">
                 <div>
@@ -92,31 +111,9 @@
                     <a href="#">Supprimer</a>
                 </div>
             </div>
-            <button id="bouton-afficher-commentaires">Afficher les commentaires</button>
+
         </div>
-        <script>
-            // JS pour le bouton d'affichage/cachage des commentaires
-            const boutonAfficher = document.querySelector("#bouton-afficher-commentaires");
-            const divCommentaires = document.querySelector(".liste-commentaires");
-
-            boutonAfficher.addEventListener("click", () => {
-                if (divCommentaires.style.display === "none") {
-                    divCommentaires.style.display = "flex";
-                    boutonAfficher.textContent = "Cacher les commentaires";
-                } else {
-                    divCommentaires.style.display = "none";
-                    boutonAfficher.textContent = "Afficher les commentaires";
-                }
-            });
-            const ratingInputs = document.querySelectorAll('input[type="radio"]');
-            const noteValue = document.querySelector("#note-value");
-
-            ratingInputs.forEach((input) => {
-                input.addEventListener("change", () => {
-                    noteValue.textContent = input.value;
-                });
-            });
-        </script>
+</center>
 </div>
 </body>
 </html>

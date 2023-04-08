@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -44,20 +45,20 @@ public class RedirectPage {
 
     }
 
-    public String cheminjs(String fichier)  { //à finir
-        String chemin="src/main/resources/templates/js/";
-        String chemin_complet=chemin+fichier;
+    public String cheminjs(String fichier) { //à finir
+        String chemin = "src/main/resources/templates/js/";
+        String chemin_complet = chemin + fichier;
         File f = new File(chemin_complet);
-        String css = "error file";
-        if(f.exists() && !f.isDirectory()) {
+        String js = "error file";
+        if (f.exists() && !f.isDirectory()) {
             try {
-                css = new String(Files.readAllBytes(Paths.get(chemin_complet)));
+                js = new String(Files.readAllBytes(Paths.get(chemin_complet)), StandardCharsets.UTF_8);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
-        return css;
+        return js;
     }
 }
 

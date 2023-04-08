@@ -114,3 +114,6 @@
 .rating input[type="radio"]:checked ~ label {
     color: orange;
 }
+#comment-form {
+    display: none;
+}
