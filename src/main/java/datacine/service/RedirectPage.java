@@ -60,6 +60,16 @@ public class RedirectPage {
 
         return js;
     }
+
+    public String getnameimagefile(String id) {
+        return "sonic.png";
+    }
+    public String getnameimageacteur(String id) {
+        return "sonic.png";
+    }
+    public String getnameimagerealisteaur(String id) {
+        return "sonic.png";
+    }
 }
 
 

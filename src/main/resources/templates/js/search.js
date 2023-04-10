@@ -1,26 +1,26 @@
 const jsonData = [
     {
-        "index": "1",
+        "index": "/film/1",
         "value": "Première valeur"
     },
     {
-        "index": "2",
+        "index": "/film/2",
         "value": "Deuxième valeur"
     },
     {
-        "index": "3",
+        "index": "/film/3",
         "value": "Troisieme valeur"
     },
     {
-        "index": "4",
+        "index": "/film/4",
         "value": "Quatrieme valeur"
     },
     {
-        "index": "5",
+        "index": "/film/5",
         "value": "Cinquième valeur"
     },
     {
-        "index": "6",
+        "index": "/film/6",
         "value": "Sixième valeur"
     }
 ];
@@ -35,7 +35,7 @@ function displayResults(results) {
             const li = document.createElement('li');
             const link = document.createElement('a');
             link.textContent = results[i].value;
-            link.href = `/chemin/${results[i].index}`;
+            link.href = `${results[i].index}`;
             li.setAttribute('data-index', results[i].index);
             link.setAttribute('data-index', results[i].index);
             li.appendChild(link);

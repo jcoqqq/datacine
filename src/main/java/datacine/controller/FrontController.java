@@ -1,13 +1,20 @@
 package datacine.controller;
 
-import datacine.service.Datafront;
+import datacine.service.DataFrontAcceuil;
+import datacine.service.DataFrontFilmRea;
 import datacine.service.RedirectPage;
+import jakarta.activation.FileTypeMap;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 
 @RestController
 @EnableWebMvc
@@ -17,7 +24,7 @@ public class FrontController {
     @GetMapping("/")
     public ModelAndView index(@PathVariable(required = false,name="page") String page, Model model) {
 
-        Datafront data = new Datafront();
+        DataFrontAcceuil data = new DataFrontAcceuil();
        data.film();
         System.out.println(data.gethtml());
         model.addAttribute("data", data);
@@ -38,7 +45,7 @@ public class FrontController {
     @RequestMapping(value = "/search/{search}")
     public ModelAndView search(@PathVariable(required = false,name="search") String search, Model model) {
 
-        Datafront data = new Datafront();
+        DataFrontAcceuil data = new DataFrontAcceuil();
         data.search(search);
         System.out.println(data.gethtml());
         model.addAttribute("data", data);
@@ -56,9 +63,10 @@ public class FrontController {
     }
     @RequestMapping("/film/{id}")
     public ModelAndView film(@PathVariable(required = false,name="id") String id, Model model) {
-
-        // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
-
+        DataFrontFilmRea dataFrontFilmRea = new DataFrontFilmRea();
+        dataFrontFilmRea.setid(id);
+        dataFrontFilmRea.setfilm(true);
+        model.addAttribute("data",dataFrontFilmRea); // Ajouter un objet Data à votre modèle et vue
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("filmrea");
         return modelAndView;
@@ -67,5 +75,23 @@ public class FrontController {
     public String js(@PathVariable(required = false,name="fichier") String fichier)  {
         String contenu=redirect.cheminjs(fichier);
         return contenu;
+    }
+    @RequestMapping(value = "/image/film/{id}")
+    public ResponseEntity<byte[]> getimage(@PathVariable(name="id") String id) throws IOException{
+        String fichier=redirect.getnameimagefile(id);
+        File img = new File("src/main/resources/templates/images/films/"+fichier);
+        return ResponseEntity.ok().contentType(MediaType.valueOf(FileTypeMap.getDefaultFileTypeMap().getContentType(img))).body(Files.readAllBytes(img.toPath()));
+    }
+    @RequestMapping(value = "/image/realisateur/{id}")
+    public ResponseEntity<byte[]> getrealisateur(@PathVariable(name="id") String id) throws IOException{
+        String fichier=redirect.getnameimageacteur(id);
+        File img = new File("src/main/resources/templates/images/realisateurs/"+fichier);
+        return ResponseEntity.ok().contentType(MediaType.valueOf(FileTypeMap.getDefaultFileTypeMap().getContentType(img))).body(Files.readAllBytes(img.toPath()));
+    }
+    @RequestMapping(value = "/image/acteur/{id}")
+    public ResponseEntity<byte[]> getacteur(@PathVariable(name="id") String id) throws IOException{
+        String fichier=redirect.getnameimagerealisteaur(id);
+        File img = new File("src/main/resources/templates/images/acteurs/"+fichier);
+        return ResponseEntity.ok().contentType(MediaType.valueOf(FileTypeMap.getDefaultFileTypeMap().getContentType(img))).body(Files.readAllBytes(img.toPath()));
     }
 }
