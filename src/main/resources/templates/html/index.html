@@ -2,27 +2,29 @@
 <html>
 <head>
   <title>Cinéma - Page d'accueil</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="/css/search.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <header>
   <div class="logo">
-    <H1>DATACINE</H1>
+      <H1><a href="/">DATACINE</a></H1>
   </div>
 
 
         <div class="search">
-          <form>
-            <input type="text" placeholder="Rechercher...">
-            <button type="submit">Go</button>
-          </form>
+          <input type="text" id="search-input" placeholder="Rechercher votre film">
+
+         <button> <input type="submit" value="Envoyer" onclick="window.location.href='/search/' + document.getElementById('search-input').value;">
+         </button>
+          <ul id="search-results"></ul>
+          <script src="/js/search.js"></script>
         </div>
 
   <div class="login">
-    <a href="connexion">Se connecter</a>
-    <a href="inscription">S'inscrire</a>
+    <a href="/connexion">Se connecter</a>
+    <a href="/inscription">S'inscrire</a>
   </div>
 </header>
   <title>Tableau avec images cliquables</title>

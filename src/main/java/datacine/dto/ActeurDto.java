@@ -1,11 +1,7 @@
 package datacine.dto;
 
-import datacine.domain.Film;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
 

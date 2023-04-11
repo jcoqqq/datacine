@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+    <title>Cinéma - Page d'accueil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/filmrea.css">
+    <link rel="stylesheet" href="/css/search.css">
+
+
+
+</head>
+
+    <title>Ma page</title>
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <H1><a href="/">DATACINE</a></H1>
+    </div>
+
+    <div class="search">
+        <input type="text" id="search-input" placeholder="Rechercher votre film">
+
+        <button> <input type="submit" value="Envoyer" onclick="window.location.href='/search/' + document.getElementById('search-input').value;">
+        </button>
+        <ul id="search-results"></ul>
+        <script src="/js/search.js"></script>
+        <script src="/js/filmrea.js"></script>
+
+    </div>
+
+    <div class="login">
+        <a href="/connexion">Se connecter</a>
+        <a href="/inscription">S'inscrire</a>
+    </div>
+</div>
+</header>
+    <div class="disposition" th:utext="${data.getdescription()}">
+
+
+</div>
+<div class="imagefilmrea">
+    <div class="scroll" th:utext="${data.getreafilm()}">
+
+
+    </div>
+</div>
+        <!-- Div pour ajouter un commentaire -->
+        <div class="commentaires">
+
+            <div class="ajouter-commentaire">
+                <button id="toggle-comment">Écrire un commentaire</button>
+                <form action="/v1/add/film" method="post" id="comment-form">
+                    <textarea name="description" placeholder="Ajouter un commentaire"></textarea>
+                    <div>
+                        <!-- Notation en étoiles -->
+                        <div class="rating">
+                            <input type="radio" name="note" value="5" id="star5" />
+                            <label for="star5">&#9733;</label>
+                            <input type="radio" name="note" value="4" id="star4" />
+                            <label for="star4">&#9733;</label>
+                            <input type="radio" name="note" value="3" id="star3" />
+                            <label for="star3">&#9733;</label>
+                            <input type="radio" name="note" value="2" id="star2" />
+                            <label for="star2">&#9733;</label>
+                            <input type="radio" name="note" value="1" id="star1" />
+                            <label for="star1">&#9733;</label>
+                        </div>
+                        <p>Votre note : <span id="note-value">-</span></p>
+                    </div>
+                    <input type="submit" value="valider">
+                </form>
+            </div>
+
+            <style>
+                #comment-form {
+                    display: none;
+                }
+
+            </style>
+
+        </div>
+    </div>
+<button id="bouton-afficher-commentaires">Afficher les commentaires</button>
+            <!-- Div pour afficher les commentaires des autres personnes -->
+            <div class="liste-commentaires" th:utext="${data.getlistecommentaire()}" >
+
+            </div>
+
+        </div>
+</div>
+</body>
+</html>
