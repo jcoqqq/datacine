@@ -19,7 +19,7 @@ public class ActeurMapper {
 
         List<FilmDto> filmDtoList = new ArrayList<>();
 
-        for (Film film : acteur.getFilmsTournes()) {
+        for (Film film : acteur.getFilms()) {
             filmDtoList.add(FilmMapper.filmToDto(film));
         }
 

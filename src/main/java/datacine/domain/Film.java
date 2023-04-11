@@ -1,26 +1,31 @@
 package datacine.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-
-import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import javax.persistence.*;
 import java.util.List;
+
+@Data
+@NoArgsConstructor
 
 @Getter
 @Setter
 @Entity
-@Table(name = "film")
+@Table(name = "FILM")
 public class Film {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_film")
-    private int id_film;
+    @Column(name = "ID")
+    private int id;
 
-    @Column(name = "nom")
+    @Column(name = "NOM")
     private String nom;
 
     @ManyToMany(fetch = FetchType.EAGER)
