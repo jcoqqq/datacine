@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface FilmRepository extends CrudRepository<Film, Integer> {
 
-    Boolean deleteById_film(int id);
+    Boolean deleteByNom(String nom);
 }

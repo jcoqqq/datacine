@@ -1,8 +1,12 @@
 package datacine.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,8 +30,12 @@ public class Acteur {
     @Column(name = "date_naissance")
     private LocalDate dateNaissance;
 
-    @ManyToMany(mappedBy = "acteurs")
-    @JoinColumn(name = "id_film")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "acteurFilm",
+            joinColumns = @JoinColumn( name = "id_acteur" ),
+            inverseJoinColumns = @JoinColumn( name = "id_film" ))
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private List<Film> filmsTournes;
 
 }

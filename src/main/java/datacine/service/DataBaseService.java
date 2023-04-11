@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import datacine.repository.ActeurRepository;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class DataBaseService {
@@ -38,7 +40,8 @@ public class DataBaseService {
 
     public Boolean getActeur() {
         try {
-            Iterable<Acteur> acteurs = acteurRepository.findAll();
+            //Iterable<Acteur> acteurs = acteurRepository.findAll();
+            Optional<Acteur> acteur = acteurRepository.findByNom("jeeaaan");
             return true;
         }
         catch (Exception e) {
@@ -110,19 +113,19 @@ public class DataBaseService {
         }
     }
 
-    public Boolean deleteAvis(int id) {
-        return avisRepository.deleteAvisById_avis(id);
+    //public Boolean deleteAvis(int id) {
+      //  return avisRepository.deleteById(id);
+    //}
+
+    public Boolean deleteActeur(String nom) {
+        return acteurRepository.deleteByNom(nom);
     }
 
-    public Boolean deleteActeur(int id) {
-        return acteurRepository.deleteById_acteur(id);
+    public Boolean deleteFilm(String nom) {
+        return filmRepository.deleteByNom(nom);
     }
 
-    public Boolean deleteFilm(int id) {
-        return filmRepository.deleteById_film(id);
-    }
-
-    public Boolean deleteRealisateur(int id) {
-        return realisateurRepository.deleteRealisateurById_realisateur(id);
+    public Boolean deleteRealisateur(String nom) {
+        return realisateurRepository.deleteByNom(nom);
     }
 }

@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface RealisateurRepository extends CrudRepository<Realisateur, Integer> {
 
-    Boolean deleteRealisateurById_realisateur(int id);
+    Boolean deleteByNom(String nom);
 }

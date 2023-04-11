@@ -1,8 +1,12 @@
 package datacine.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,7 +18,6 @@ public class Realisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@org.springframework.data.annotation.Id
     @Column(name = "id_realisateur")
     private int id_realisateur;
 
@@ -27,10 +30,19 @@ public class Realisateur {
     @Column(name = "date_naissance")
     private LocalDate dateNaissance;
 
-    @ManyToMany
-    @JoinColumn(name = "id_film")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "realisateurFilm",
+            joinColumns = @JoinColumn( name = "id_realisateur" ),
+            inverseJoinColumns = @JoinColumn( name = "id_film" ))
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private List<Film> filmsRealises;
 
-    @OneToMany(mappedBy = "realisateur")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "realisateurAvis",
+            joinColumns = @JoinColumn( name = "id_realisateur" ),
+            inverseJoinColumns = @JoinColumn( name = "id_avis" ))
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private List<Avis> avis;
 }

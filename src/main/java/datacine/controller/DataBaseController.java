@@ -54,23 +54,23 @@ public class DataBaseController implements DataBaseRest {
         return dataBaseService.addFilm();
     }
 
+    //@Override
+    //public Boolean deleteAvis(String nom) {
+        //return dataBaseService.deleteAvis(id);
+    //}
+
     @Override
-    public Boolean deleteAvis(int id) {
-        return dataBaseService.deleteAvis(id);
+    public Boolean deleteFilm(String nom) {
+        return dataBaseService.deleteFilm(nom);
     }
 
     @Override
-    public Boolean deleteFilm(int id) {
-        return dataBaseService.deleteFilm(id);
+    public Boolean deleteActeur(String nom) {
+        return dataBaseService.deleteActeur(nom);
     }
 
     @Override
-    public Boolean deleteActeur(int id) {
-        return dataBaseService.deleteActeur(id);
-    }
-
-    @Override
-    public Boolean deleteRealisateur(int id) {
-        return dataBaseService.deleteRealisateur(id);
+    public Boolean deleteRealisateur(String nom) {
+        return dataBaseService.deleteRealisateur(nom);
     }
 }

@@ -6,8 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+
 @Repository
 public interface ActeurRepository extends CrudRepository<Acteur, Integer> {
 
-    Boolean deleteById_acteur(int id);
+    Boolean deleteByNom(String nom);
+
+    Optional<Acteur> findByNom(String nom);
 }

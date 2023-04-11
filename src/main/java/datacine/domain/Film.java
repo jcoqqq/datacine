@@ -1,8 +1,12 @@
 package datacine.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.util.List;
 
 @Getter
@@ -19,22 +23,27 @@ public class Film {
     @Column(name = "nom")
     private String nom;
 
-    @ManyToMany
-    @JoinTable(
-            name = "realisateur",
-            joinColumns = @JoinColumn(name = "id_realisateur"))
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "realisateurFilm",
+            joinColumns = @JoinColumn( name = "id_film" ),
+            inverseJoinColumns = @JoinColumn( name = "id_realisateur" ))
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private List<Realisateur> realisateurs;
 
-    @ManyToMany
-    @JoinTable(
-            name = "acteur",
-            joinColumns = @JoinColumn(name = "id_films_tournes"),
-            inverseJoinColumns = @JoinColumn(name = "id_acteur"))
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "acteurFilm",
+            joinColumns = @JoinColumn( name = "id_film" ),
+            inverseJoinColumns = @JoinColumn( name = "id_acteur" ))
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private List<Acteur> acteurs;
 
-    @ManyToMany
-    @JoinTable(
-            name = "avis",
-            joinColumns = @JoinColumn(name = "id_avis"))
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "filmAvis",
+            joinColumns = @JoinColumn( name = "id_film" ),
+            inverseJoinColumns = @JoinColumn( name = "id_avis" ))
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private List<Avis> avis;
 }

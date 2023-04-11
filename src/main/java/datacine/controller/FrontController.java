@@ -13,7 +13,8 @@ import java.util.*;
 @EnableWebMvc
 @RequestMapping(value = "/")
 public class FrontController {
-    private RedirectPage redirect = new RedirectPage();
+
+    private final RedirectPage redirect = new RedirectPage();
     @GetMapping("/")
     public ModelAndView index(@PathVariable(required = false,name="page") String page, Model model) {
 
@@ -38,12 +39,10 @@ public class FrontController {
 
     @RequestMapping(value = "/css/{fichier}")
     public String css(@PathVariable(required = false,name="fichier") String fichier)  {
-            String contenu=redirect.chemincss(fichier);
-            return contenu;
+        return redirect.chemincss(fichier);
     }
     @RequestMapping(value = "/js/{fichier}")
     public String js(@PathVariable(required = false,name="fichier") String fichier)  {
-        String contenu=redirect.cheminjs(fichier);
-        return contenu;
+        return redirect.cheminjs(fichier);
     }
 }

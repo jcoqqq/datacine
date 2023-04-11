@@ -33,15 +33,15 @@ public interface DataBaseRest {
     @GetMapping(value = "get/avis")
     Boolean getAvis();
 
-    @DeleteMapping(value = "delete/avis/{id}")
-    Boolean deleteAvis(@PathVariable int id);
+    //@DeleteMapping(value = "delete/avis/{id}")
+    //Boolean deleteAvis(@PathVariable int id);
 
-    @DeleteMapping(value = "delete/acteur/{id}")
-    Boolean deleteActeur(@PathVariable int id);
+    @DeleteMapping(value = "delete/acteur/{nom}")
+    Boolean deleteActeur(@PathVariable String nom);
 
-    @DeleteMapping(value = "delete/film/{id}")
-    Boolean deleteFilm(@PathVariable int id);
+    @DeleteMapping(value = "delete/film/{nom}")
+    Boolean deleteFilm(@PathVariable String nom);
 
-    @DeleteMapping(value = "delete/realisateur/{id}")
-    Boolean deleteRealisateur(@PathVariable int id);
+    @DeleteMapping(value = "delete/realisateur/{nom}")
+    Boolean deleteRealisateur(@PathVariable String nom);
 }

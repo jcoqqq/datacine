@@ -8,5 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface AvisRepository extends CrudRepository<Avis, Integer> {
 
-    Boolean deleteAvisById_avis(int id);
+    //Boolean deleteById(int id);
 }
