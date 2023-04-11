@@ -4,8 +4,10 @@ import datacine.service.DataFrontAcceuil;
 import datacine.service.DataFrontFilmRea;
 import datacine.service.RedirectPage;
 import jakarta.activation.FileTypeMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @EnableWebMvc
@@ -101,5 +105,23 @@ public class FrontController {
         String fichier = redirect.getnameimagerealisteaur(id);
         File img = new File("src/main/resources/templates/images/acteurs/"+fichier);
         return ResponseEntity.ok().contentType(MediaType.valueOf(FileTypeMap.getDefaultFileTypeMap().getContentType(img))).body(Files.readAllBytes(img.toPath()));
+    }
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @RequestMapping(value = "/testsql/{fichier}")
+    public String sql(@PathVariable(required = false, name = "fichier") String fichier) {
+        String sqlQuery = "SELECT acteur.prenom as acteurprenom,film.nom as nomfilm,realisateur.prenom as prenomrealisateur,realisateur.nom as nom_realisateur,realisateur.date_naissance as realisateur_date_naissance FROM acteur_film_realisateur,acteur,film,realisateur WHERE acteur_film_realisateur.id_acteur=acteur.id_acteur AND acteur_film_realisateur.id_film=film.id_film AND acteur_film_realisateur.id_realisateur=realisateur.id_realisateur;";
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(sqlQuery);
+
+        String result = " acteurprenom  -- nomfilm -- prenomrealisateur -- nom_realisateur -- realisateur_date_naissance";
+        result+="</br>";
+
+        for (Map<String, Object> row : rows) {
+            result += row.get("acteurprenom") + " - " + row.get("nomfilm") + " - " + row.get("prenomrealisateur") + " - " + row.get("nom_realisateur")+" - "+row.get("realisateur_date_naissance");
+            result+="</br>";
+        }
+
+        return result;
     }
 }
