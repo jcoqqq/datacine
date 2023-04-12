@@ -7,6 +7,7 @@ import java.util.Hashtable;
 public class DataFrontAcceuil {
     Dictionary<String, String> monDictionnaire   = new Hashtable<String, String>();
     private String html;
+    private Sesssionutilisateur session;
 
     public void film() {
         monDictionnaire.put("/film/0", "hello");
@@ -56,5 +57,45 @@ public class DataFrontAcceuil {
         monDictionnaire.put("/film/10", "5bonjour");
         monDictionnaire.put("/film/13", "6test");
         generateHtml();
+    }
+
+    public void setsession(Sesssionutilisateur session) {
+        this.session=session;
+    }
+
+    public String setjson(String chaine) {
+        if(chaine.equals("null")){
+            return "[]";
+        }
+        else{
+            String jsonData = "[\n" +
+                    "    {\n" +
+                    "        \"index\": \"/film/1\",\n" +
+                    "        \"value\": \"Première valeur\"\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "        \"index\": \"/film/2\",\n" +
+                    "        \"value\": \"Deuxième valeur\"\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "        \"index\": \"/film/3\",\n" +
+                    "        \"value\": \"Troisieme valeur\"\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "        \"index\": \"/film/4\",\n" +
+                    "        \"value\": \"Quatrieme valeur\"\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "        \"index\": \"/film/5\",\n" +
+                    "        \"value\": \"Cinquième valeur\"\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "        \"index\": \"/film/6\",\n" +
+                    "        \"value\": \"Sixième valeur\"\n" +
+                    "    }\n" +
+                    "]";
+                return jsonData;
+        }
+
     }
 }

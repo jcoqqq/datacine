@@ -1,32 +1,14 @@
-const jsonData = [
-    {
-        "index": "/film/1",
-        "value": "Première valeur"
-    },
-    {
-        "index": "/film/2",
-        "value": "Deuxième valeur"
-    },
-    {
-        "index": "/film/3",
-        "value": "Troisieme valeur"
-    },
-    {
-        "index": "/film/4",
-        "value": "Quatrieme valeur"
-    },
-    {
-        "index": "/film/5",
-        "value": "Cinquième valeur"
-    },
-    {
-        "index": "/film/6",
-        "value": "Sixième valeur"
-    }
-];
+var jsonData;
 
 const searchInput = document.querySelector('#search-input');
 const searchResults = document.querySelector('#search-results');
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
 
 function displayResults(results) {
     searchResults.innerHTML = '';
@@ -49,11 +31,19 @@ function displayResults(results) {
     }
 }
 
-searchInput.addEventListener('input', () => {
-    const inputValue = searchInput.value.toLowerCase();
-    //c'est là ou il faudra faire requete quete et changer le json dynamiquement et si rien tu envoyes un json vide
-    const results = jsonData.filter(data => data.value.toLowerCase().includes(inputValue));
-    displayResults(results);
+searchInput.addEventListener('input', async () => {
+    let inputValue = searchInput.value.toLowerCase();
+    if(inputValue.length==0){
+        inputValue="null";
+    }
+    try {
+        const response = await fetch(`/proxy/searchjs/${inputValue}`);
+        const jsonData = await response.json();
+        const results = jsonData.filter(data => data.value.toLowerCase().includes(inputValue));
+        displayResults(results);
+    } catch (error) {
+        console.error(error);
+    }
 });
 
 searchInput.addEventListener('blur', () => {

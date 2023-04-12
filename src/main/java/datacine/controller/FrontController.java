@@ -4,6 +4,7 @@ import datacine.service.DataFrontAcceuil;
 import datacine.service.DataFrontFilmRea;
 import datacine.service.RedirectPage;
 import jakarta.activation.FileTypeMap;
+import datacine.service.Sesssionutilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +29,15 @@ import java.util.Map;
 public class FrontController {
 
     private final RedirectPage redirect = new RedirectPage();
+    private Sesssionutilisateur session = new Sesssionutilisateur();
+
 
     @GetMapping("/")
     public ModelAndView index(@PathVariable(required = false,name="page") String page, Model model) {
 
         DataFrontAcceuil data = new DataFrontAcceuil();
        data.film();
-        System.out.println(data.gethtml());
+        data.setsession(session);
         model.addAttribute("data", data);
        // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
 
@@ -56,7 +59,7 @@ public class FrontController {
 
         DataFrontAcceuil data = new DataFrontAcceuil();
         data.search(search);
-        System.out.println(data.gethtml());
+        data.setsession(session);
         model.addAttribute("data", data);
         // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
 
@@ -74,6 +77,8 @@ public class FrontController {
     public ModelAndView film(@PathVariable(required = false,name="id") String id, Model model) {
         DataFrontFilmRea dataFrontFilmRea = new DataFrontFilmRea();
         dataFrontFilmRea.setid(id);
+        dataFrontFilmRea.setsession(session);
+
         dataFrontFilmRea.setfilm(true);
         model.addAttribute("data",dataFrontFilmRea); // Ajouter un objet Data à votre modèle et vue
         ModelAndView modelAndView = new ModelAndView();

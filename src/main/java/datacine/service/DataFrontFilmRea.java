@@ -11,6 +11,7 @@ public class DataFrontFilmRea {
     private Boolean film=false;
     private Boolean acteur=false;
     private Boolean realisateur=false;
+    private Sesssionutilisateur session;
 
     public void setid(String id) {
         this.id=id;
@@ -32,7 +33,7 @@ public class DataFrontFilmRea {
         String description="hello";
 
         String text="<div class=\"images\">\n" +
-                "    <img class=\"image\" src=\"/image"+chemin+"\" alt=\"Image 1\">\n" +
+                "    <img class=\"image-miniature\" src=\"/image"+chemin+"\" alt=\"Image 1\">\n" +
                 "    <div>\n" +
                 "        <p>"+number_commentaire+" commentaires</p>\n" +
                 "        <p>"+number_avis+" avis</p>\n" +
@@ -88,5 +89,8 @@ public class DataFrontFilmRea {
         return text;
     }
 
+    public void setsession(Sesssionutilisateur session) {
+        this.session=session;
+    }
 }
 

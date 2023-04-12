@@ -3,9 +3,9 @@
     <title>Cinéma - Page d'accueil</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/search.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/filmrea.css">
-    <link rel="stylesheet" href="/css/search.css">
 
 
 
@@ -74,15 +74,10 @@
                 </form>
             </div>
 
-            <style>
-                #comment-form {
-                    display: none;
-                }
 
-            </style>
 
-        </div>
-    </div>
+
+<div class="ajouter-commentaire">
 <button id="bouton-afficher-commentaires">Afficher les commentaires</button>
             <!-- Div pour afficher les commentaires des autres personnes -->
             <div class="liste-commentaires" th:utext="${data.getlistecommentaire()}" >
@@ -91,5 +86,11 @@
 
         </div>
 </div>
+<style>
+    #comment-form {
+        display: none;
+    }
+
+</style>
 </body>
 </html>
