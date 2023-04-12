@@ -9,14 +9,16 @@
 <body>
 
 <div class="form-container sign-in-container">
-  <form action="" method="post">
+  <form action="/proxy/inscription" method="post">
     <h1>Sign in</h1>
+    <p th:text="${info}">test</p>
+
     <div class="social-container">
 
     </div>
-    <input type="text" name="name" placeholder="user" />
-    <input type="email" name="mail" placeholder="Email" />
-    <input type="password" name="password" placeholder="Password" />
+    <input type="text" required name="utilisateur" placeholder="user" />
+    <input type="email"  required name="mail" placeholder="Email" />
+    <input type="password" required name="password" placeholder="Password" />
 
     <input type="submit" name="signup" value="inscrivez-vous" />
   </form>

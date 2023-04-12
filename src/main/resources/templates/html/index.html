@@ -22,10 +22,15 @@
           <script src="/js/search.js"></script>
         </div>
 
-  <div class="login">
-    <a href="/connexion">Se connecter</a>
-    <a href="/inscription">S'inscrire</a>
-  </div>
+    <div class="login" th:if="${data.verifsession!=null}">
+        <p th:text="${data.verifsession()}">Username</p>
+        <a href="/deconnexion">deconnexion</a>
+    </div>
+    <div class="login"  th:if="${data.verifsession==null}">
+        <a href="/connexion">Se connecter</a>
+        <a href="/inscription">S'inscrire</a>
+    </div>
+
 </header>
   <title>Tableau avec images cliquables</title>
   <meta charset="UTF-8">

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +9,14 @@
 <body>
 
 <div class="form-container sign-in-container">
-  <form action="" method="post">
+  <form action="/proxy/connexion" method="post">
     <h1>Connexion</h1>
+    <p th:text="${info}">test</p>
     <div class="social-container">
 
     </div>
-    <input type="email" name="mail" placeholder="Email" />
-    <input type="password" name="password" placeholder="Password" />
+    <input type="text" required name="utilisateur" placeholder="entrez votre nom d'utilisateur" />
+    <input type="password"  required name="password" placeholder="Password" />
 
     <input type="submit" name="login" value="connectez-vous" />
   </form>

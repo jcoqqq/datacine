@@ -1,5 +1,7 @@
 package datacine.service;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -11,7 +13,7 @@ public class DataFrontFilmRea {
     private Boolean film=false;
     private Boolean acteur=false;
     private Boolean realisateur=false;
-    private Sesssionutilisateur session;
+    private HttpSession session;
 
     public void setid(String id) {
         this.id=id;
@@ -56,10 +58,10 @@ public class DataFrontFilmRea {
         while (e.hasMoreElements()) {
             String key = e.nextElement();
             String value = monDictionnaire2.get(key);
-           text += "<div > " +
-                   "        <img class='image-miniature' src='/image" + key +" ' alt=Image 1 miniature>\n" +
-                   "            <p>"+value+"</p>\n" +
-                   "        </div>";
+           text += "<div>" +
+                   "<img class='image-miniature' src='/image" + key +" ' alt=Image 1 miniature>\n" +
+                   "<p>"+value+"</p>\n" +
+                   "</div>";
            }
            return text;
        }
@@ -72,14 +74,18 @@ public class DataFrontFilmRea {
         monDictionnaire.put("/commentairefilm/delete/13", "hello");
         String text="";
         Enumeration<String> e = monDictionnaire.keys();
-        Boolean admin=false; //remplacer par un get pour vérifier que c'est un admin
+        boolean admin = false;
+        if(session.getAttribute("administrateur")!=null){
+            admin= (Boolean) session.getAttribute("administrateur");
+        }
+       //remplacer par un get pour vérifier que c'est un admin
         while (e.hasMoreElements()) {
 
             // Getting the key of a particular entry
             String key = e.nextElement();
             String value = monDictionnaire.get(key);
             text+="<div>" +
-                    "                    <p>"+value+"</p>";
+                    "<p>"+value+"</p>";
                     if(admin==true) {
                         text+=" <a href=" + key + ">Supprimer</a> ";
                     }
@@ -88,8 +94,17 @@ public class DataFrontFilmRea {
         }
         return text;
     }
+    public String verifsession(){
+        String user= (String) session.getAttribute("utilisateur");
+        if(user!=null) {
+            return user;
+        }
+        else{
+            return null;
+        }
+    }
 
-    public void setsession(Sesssionutilisateur session) {
+    public void setsession(HttpSession session) {
         this.session=session;
     }
 }

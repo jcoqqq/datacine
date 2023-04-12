@@ -19,6 +19,18 @@ header {
     color: #fff;
     text-decoration: none;
 }
+.login {
+    display: flex;
+    align-items: center;
+}
+
+.login p {
+    margin: 0 10px 0 0;
+}
+
+.login a {
+    margin: 0;
+}
 
 
 
@@ -66,4 +78,8 @@ img {
 }
 p {
     margin-top: 10px;
+}
+.image-miniature {
+    width: 15%;
+    height: auto;
 }

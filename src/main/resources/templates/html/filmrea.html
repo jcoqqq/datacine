@@ -31,7 +31,11 @@
 
     </div>
 
-    <div class="login">
+    <div class="login" th:if="${data.verifsession()!=null}">
+        <p th:text="${data.verifsession()}">Username</p>
+        <a href="/deconnexion">deconnexion</a>
+    </div>
+    <div class="login"  th:if="${data.verifsession()==null}">
         <a href="/connexion">Se connecter</a>
         <a href="/inscription">S'inscrire</a>
     </div>
@@ -50,7 +54,7 @@
         <!-- Div pour ajouter un commentaire -->
         <div class="commentaires">
 
-            <div class="ajouter-commentaire">
+            <div class="ajouter-commentaire" th:if="${data.verifsession()!=null}">
                 <button id="toggle-comment">Écrire un commentaire</button>
                 <form action="/v1/add/film" method="post" id="comment-form">
                     <textarea name="description" placeholder="Ajouter un commentaire"></textarea>
@@ -80,6 +84,7 @@
 <div class="ajouter-commentaire">
 <button id="bouton-afficher-commentaires">Afficher les commentaires</button>
             <!-- Div pour afficher les commentaires des autres personnes -->
+
             <div class="liste-commentaires" th:utext="${data.getlistecommentaire()}" >
 
             </div>

@@ -1,5 +1,7 @@
 package datacine.service;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -7,7 +9,7 @@ import java.util.Hashtable;
 public class DataFrontAcceuil {
     Dictionary<String, String> monDictionnaire   = new Hashtable<String, String>();
     private String html;
-    private Sesssionutilisateur session;
+    private HttpSession session;
 
     public void film() {
         monDictionnaire.put("/film/0", "hello");
@@ -35,7 +37,7 @@ public class DataFrontAcceuil {
             // Getting the key of a particular entry
             String key = e.nextElement();
             String value = monDictionnaire.get(key);
-            html+="<td><a href='"+key+"'><img src='/image"+key+"' </a></br><p>"+value+"</p></td>";
+            html+="<td><a href='"+key+"'><img class=\"image-miniature\" src='/image"+key+"' </a></br><p>"+value+"</p></td>";
 
             if(i%3==0){
                 html+="</tr><tr>";
@@ -59,9 +61,7 @@ public class DataFrontAcceuil {
         generateHtml();
     }
 
-    public void setsession(Sesssionutilisateur session) {
-        this.session=session;
-    }
+
 
     public String setjson(String chaine) {
         if(chaine.equals("null")){
@@ -97,5 +97,17 @@ public class DataFrontAcceuil {
                 return jsonData;
         }
 
+    }
+    public String verifsession(){
+        String user= (String) session.getAttribute("utilisateur");
+        if(user!=null) {
+            return user;
+        }
+        else{
+            return null;
+        }
+    }
+    public void setsession(HttpSession session) {
+        this.session=session;
     }
 }

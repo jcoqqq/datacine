@@ -1,19 +1,16 @@
 package datacine.controller;
 
-import datacine.service.DataFrontAcceuil;
-import datacine.service.DataFrontFilmRea;
-import datacine.service.RedirectPage;
+import datacine.service.*;
 import jakarta.activation.FileTypeMap;
-import datacine.service.Sesssionutilisateur;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -29,27 +26,41 @@ import java.util.Map;
 public class FrontController {
 
     private final RedirectPage redirect = new RedirectPage();
-    private Sesssionutilisateur session = new Sesssionutilisateur();
 
 
     @GetMapping("/")
-    public ModelAndView index(@PathVariable(required = false,name="page") String page, Model model) {
+    public ModelAndView index(@PathVariable(required = false,name="page") String page, Model model,HttpServletRequest request) {
 
         DataFrontAcceuil data = new DataFrontAcceuil();
+        HttpSession session = request.getSession();
        data.film();
-        data.setsession(session);
+       data.setsession(session);
         model.addAttribute("data", data);
-       // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
+
+        // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
         return modelAndView;
     }
+    @GetMapping("/deconnexion")
+    public ModelAndView deconnexion(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("utilisateur");
+        // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
 
+        ModelAndView modelAndView = new ModelAndView("redirect:/");
+        return modelAndView;
+    }
     @RequestMapping(value = "/{page}")
-    public ModelAndView hello(@PathVariable(required = false,name="page") String page) {
+    public ModelAndView hello(@PathVariable(required = false,name="page") String page, HttpServletRequest request,Model model) {
         ModelAndView modelAndView = new ModelAndView();
         String verifpage = redirect.Page(page);
+        HttpSession session = request.getSession();
+        if(session.getAttribute("information")!=null) {
+            model.addAttribute("info", session.getAttribute("information"));
+            session.removeAttribute("information");
+        }
         modelAndView.setViewName(verifpage);
         return modelAndView;
     }
@@ -59,7 +70,6 @@ public class FrontController {
 
         DataFrontAcceuil data = new DataFrontAcceuil();
         data.search(search);
-        data.setsession(session);
         model.addAttribute("data", data);
         // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
 
@@ -74,11 +84,11 @@ public class FrontController {
     }
 
     @RequestMapping("/film/{id}")
-    public ModelAndView film(@PathVariable(required = false,name="id") String id, Model model) {
+    public ModelAndView film(@PathVariable(required = false,name="id") String id, Model model,HttpServletRequest request) {
         DataFrontFilmRea dataFrontFilmRea = new DataFrontFilmRea();
         dataFrontFilmRea.setid(id);
+        HttpSession session = request.getSession();
         dataFrontFilmRea.setsession(session);
-
         dataFrontFilmRea.setfilm(true);
         model.addAttribute("data",dataFrontFilmRea); // Ajouter un objet Data à votre modèle et vue
         ModelAndView modelAndView = new ModelAndView();
@@ -129,4 +139,6 @@ public class FrontController {
 
         return result;
     }
+
+
 }
