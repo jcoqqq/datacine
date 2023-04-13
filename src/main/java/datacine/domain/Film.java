@@ -13,8 +13,8 @@ public class Film {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private int id;
+    @Column(name = "ID_FILM")
+    private int id_film;
 
     @Column(name = "NOM")
     private String nom;

@@ -28,7 +28,7 @@ public class RealisateurService {
             Iterable<Realisateur> realisateurs = realisateurRepository.findAll();
 
             for (Realisateur a : realisateurs) {
-                if (a.getId() == id)
+                if (a.getId_realisateur() == id)
                     return remplirRealisateur(a);
                 else
                     return new RealisateurDto();
@@ -52,7 +52,7 @@ public class RealisateurService {
                 "from realisateur,acteur_film_realisateur,film " +
                 "WHERE film.id_film=acteur_film_realisateur.id_film " +
                 "AND realisateur.id_realisateur=acteur_film_realisateur.id_realisateur " +
-                "and acteur_film_realisateur.id_film=" + realisateur.getId();
+                "and acteur_film_realisateur.id_film=" + realisateur.getId_realisateur()+";";
 
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sqlQuery);
 

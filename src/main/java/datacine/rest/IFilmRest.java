@@ -9,6 +9,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public interface IFilmRest {
 
     @GetMapping(value = "get/{id}")
-    FilmDto getFilm(Integer id);
+    FilmDto getFilm(@PathVariable Integer id);
 
 }

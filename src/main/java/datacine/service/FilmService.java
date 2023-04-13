@@ -26,7 +26,7 @@ public class FilmService {
             Iterable<Film> films = filmRepository.findAll();
 
             for (Film a : films) {
-                if (a.getId() == id)
+                if (a.getId_film() == id)
                     return remplirFilm(a);
                 else
                     return new FilmDto();
@@ -48,18 +48,18 @@ public class FilmService {
                 "FROM acteur_film_realisateur,film,realisateur " +
                 "WHERE acteur_film_realisateur.id_film=film.id_film " +
                 "AND acteur_film_realisateur.id_realisateur=realisateur.id_realisateur " +
-                "and realisateur.id_realisateur=" + film.getId();
+                "and realisateur.id_realisateur=" + film.getId_film()+";";
 
         String sqlQueryAvis = "SELECT avisfilm.id_film as id_film " +
                 "FROM avisfilm,film,user " +
                 "WHERE film.id_film=avisfilm.id_film and user.id=avisfilm.id_user " +
-                "and avisfilm.id_film=" + film.getId();
+                "and avisfilm.id_film=" + film.getId_film()+";";
 
         String sqlQueryActeur = "SELECT acteur.id_acteur,acteur.nom,acteur.prenom " +
                 "from acteur,acteur_film_realisateur,film " +
                 "WHERE film.id_film=acteur_film_realisateur.id_film " +
                 "AND acteur.id_acteur=acteur_film_realisateur.id_acteur " +
-                "and acteur_film_realisateur.id_film=" + film.getId();
+                "and acteur_film_realisateur.id_film=" + film.getId_film()+";";
 
         List<Map<String, Object>> rowsRealisateur = jdbcTemplate.queryForList(queryFilm);
         List<Map<String, Object>> rowsAvis = jdbcTemplate.queryForList(sqlQueryAvis);

@@ -14,8 +14,8 @@ public class Realisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private int id;
+    @Column(name = "ID_REALISATEUR")
+    private int id_realisateur;
 
     @Column(name = "PRENOM")
     private String prenom;

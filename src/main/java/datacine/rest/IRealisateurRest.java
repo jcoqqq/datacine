@@ -9,6 +9,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public interface IRealisateurRest {
 
     @GetMapping(value = "get/{id}")
-    RealisateurDto getReal(Integer id);
+    RealisateurDto getReal(@PathVariable Integer id);
 
 }
