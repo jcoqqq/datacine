@@ -21,7 +21,7 @@ public class FilmMapper {
 
         List<ActeurDto> acteurDtoList = new ArrayList<>();
 
-        if (film.getActeurs() != null)
+        /*if (film.getActeurs() != null)
             for (Acteur acteur : film.getActeurs()) {
                 acteurDtoList.add(ActeurMapper.acteurToDto(acteur));
             }
@@ -43,7 +43,7 @@ public class FilmMapper {
         filmDto.setRealisateurs(realisateurDtoList);
         filmDto.setActeurs(acteurDtoList);
         filmDto.setAvis(avisDtos);
-
+*/
         return filmDto;
     }
 }

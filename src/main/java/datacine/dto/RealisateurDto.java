@@ -1,8 +1,12 @@
 package datacine.dto;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
+@Data
 public class RealisateurDto {
 
     private String prenom;
@@ -11,47 +15,7 @@ public class RealisateurDto {
 
     private LocalDate dateNaissance;
 
-    private List<FilmDto> filmsRealises;
+    private List<Map<String, Object>> idFilmsRealises;
 
-    private List<AvisDto> avis;
 
-    public List<AvisDto> getAvis() {
-        return avis;
-    }
-
-    public void setAvis(List<AvisDto> avis) {
-        this.avis = avis;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public LocalDate getDateNaissance() {
-        return dateNaissance;
-    }
-
-    public void setDateNaissance(LocalDate dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-
-    public List<FilmDto> getFilmsRealises() {
-        return filmsRealises;
-    }
-
-    public void setFilmsRealises(List<FilmDto> filmsRealises) {
-        this.filmsRealises = filmsRealises;
-    }
 }

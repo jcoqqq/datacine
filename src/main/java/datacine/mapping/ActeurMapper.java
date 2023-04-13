@@ -4,6 +4,8 @@ import datacine.domain.Acteur;
 import datacine.domain.Film;
 import datacine.dto.ActeurDto;
 import datacine.dto.FilmDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +18,6 @@ public class ActeurMapper {
         acteurDto.setNom(acteur.getNom());
         acteurDto.setPrenom(acteur.getPrenom());
         acteurDto.setDateNaissance(acteur.getDateNaissance());
-
-        List<FilmDto> filmDtoList = new ArrayList<>();
-
-        for (Film film : acteur.getFilmsTournes()) {
-            filmDtoList.add(FilmMapper.filmToDto(film));
-        }
-
-        acteurDto.setFilmsTournes(filmDtoList);
 
         return acteurDto;
     }
