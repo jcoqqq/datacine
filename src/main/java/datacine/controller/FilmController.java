@@ -1,7 +1,8 @@
 package datacine.controller;
 
+import datacine.dto.FilmDto;
 import datacine.rest.IFilmRest;
-import datacine.service.DataBaseService;
+import datacine.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -11,20 +12,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class FilmController implements IFilmRest {
 
     @Autowired
-    private DataBaseService dataBaseService;
+    private FilmService filmService;
 
     @Override
-    public Boolean addFilm() {
-        return dataBaseService.addFilm();
-    }
-
-    @Override
-    public Boolean deleteFilm(String nom) {
-        return dataBaseService.deleteFilm(nom);
-    }
-
-    @Override
-    public Boolean getFilm() {
-        return dataBaseService.getFilm();
+    public FilmDto getFilm(Integer id) {
+        return filmService.getFilms(id);
     }
 }

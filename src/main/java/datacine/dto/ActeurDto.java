@@ -1,14 +1,12 @@
 package datacine.dto;
 
-import datacine.domain.Film;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
+@Data
 public class ActeurDto {
 
     private String prenom;
@@ -17,37 +15,7 @@ public class ActeurDto {
 
     private LocalDate dateNaissance;
 
-    private List<FilmDto> filmsTournes;
+    private List<Map<String, Object>> idFilmsTournes;
 
-    public String getPrenom() {
-        return prenom;
-    }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public LocalDate getDateNaissance() {
-        return dateNaissance;
-    }
-
-    public void setDateNaissance(LocalDate dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-
-    public List<FilmDto> getFilmsTournes() {
-        return filmsTournes;
-    }
-
-    public void setFilmsTournes(List<FilmDto> filmsTournes) {
-        this.filmsTournes = filmsTournes;
-    }
 }

@@ -1,5 +1,6 @@
 package datacine.rest;
 
+import datacine.dto.FilmDto;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -7,12 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public interface IFilmRest {
 
-    @GetMapping(value = "get/film")
-    Boolean getFilm();
+    @GetMapping(value = "get/{id}")
+    FilmDto getFilm(Integer id);
 
-    @PostMapping(value = "add/film")
-    Boolean addFilm();
-
-    @DeleteMapping(value = "delete/film/{nom}")
-    Boolean deleteFilm(@PathVariable String nom);
 }

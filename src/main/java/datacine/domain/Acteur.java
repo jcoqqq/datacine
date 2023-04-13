@@ -1,10 +1,10 @@
 package datacine.domain;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,8 +14,8 @@ public class Acteur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private int id;
+    @Column(name = "ID_ACTEUR")
+    private int id_acteur;
 
     @Column(name = "PRENOM")
     private String prenom;
@@ -25,12 +25,5 @@ public class Acteur {
 
     @Column(name = "DATE_NAISSANCE")
     private LocalDate dateNaissance;
-
-    @ManyToMany
-    @JoinTable(name = "ACTEUR_FILM",
-        joinColumns = @JoinColumn(name = "ID_ACTEUR"),
-        inverseJoinColumns = @JoinColumn(name = "ID_FILM"))
-    private List<Film> films;
-
 
 }

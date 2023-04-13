@@ -1,5 +1,6 @@
 package datacine.rest;
 
+import datacine.dto.RealisateurDto;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -7,12 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public interface IRealisateurRest {
 
-    @DeleteMapping(value = "delete/realisateur/{nom}")
-    Boolean deleteRealisateur(@PathVariable String nom);
+    @GetMapping(value = "get/{id}")
+    RealisateurDto getReal(Integer id);
 
-    @GetMapping(value = "get/real")
-    Boolean getReal();
-
-    @PostMapping(value = "add/realisateur")
-    Boolean addRealisateur();
 }

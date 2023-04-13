@@ -18,10 +18,9 @@ class MapperTest {
         film.setNom("7");
 
         Acteur acteur = new Acteur();
-        acteur.setId(2);
+        acteur.setId_acteur(2);
         acteur.setNom("Duj");
         acteur.setPrenom("Jan");
-        acteur.setFilmsTournes(Collections.singletonList(film));
 
         return acteur;
     }

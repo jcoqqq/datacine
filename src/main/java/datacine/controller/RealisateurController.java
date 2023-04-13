@@ -1,7 +1,8 @@
 package datacine.controller;
 
+import datacine.dto.RealisateurDto;
 import datacine.rest.IRealisateurRest;
-import datacine.service.DataBaseService;
+import datacine.service.RealisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -11,21 +12,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class RealisateurController implements IRealisateurRest {
 
     @Autowired
-    private DataBaseService dataBaseService;
+    private RealisateurService realisateurService;
 
     @Override
-    public Boolean getReal() {
-        return dataBaseService.getReal();
+    public RealisateurDto getReal(Integer id) {
+        return realisateurService.getRealisateurs(id);
     }
 
-    @Override
-    public Boolean addRealisateur() {
-        return dataBaseService.addRealisateur();
-    }
-
-
-    @Override
-    public Boolean deleteRealisateur(String nom) {
-        return dataBaseService.deleteRealisateur(nom);
-    }
 }
