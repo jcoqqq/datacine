@@ -1,24 +1,24 @@
 package datacine.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @Entity
-@Table(name = "avis")
+@Table(name = "AVIS")
 public class Avis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_avis")
-    private int id_avis;
+    @Column(name = "ID")
+    private int id;
 
-    @Column(name = "texte")
+    @Column(name = "TEXTE")
     private String texte;
 
-    @Column(name = "note")
+    @Column(name = "NOTE")
     private float note;
 }

@@ -1,41 +1,29 @@
 package datacine.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @Entity
-@Table(name = "acteur")
+@Table(name = "ACTEUR")
 public class Acteur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_acteur")
+    @Column(name = "ID_ACTEUR")
     private int id_acteur;
 
-    @Column(name = "prenom")
+    @Column(name = "PRENOM")
     private String prenom;
 
-    @Column(name = "nom")
+    @Column(name = "NOM")
     private String nom;
 
-    @Column(name = "date_naissance")
+    @Column(name = "DATE_NAISSANCE")
     private LocalDate dateNaissance;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "acteurFilm",
-            joinColumns = @JoinColumn( name = "id_acteur" ),
-            inverseJoinColumns = @JoinColumn( name = "id_film" ))
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JsonIgnore
-    private List<Film> filmsTournes;
 
 }

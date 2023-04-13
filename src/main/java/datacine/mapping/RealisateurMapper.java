@@ -21,7 +21,7 @@ public class RealisateurMapper {
 
         List<FilmDto> filmsRealises = new ArrayList<>();
 
-        for (Film film : realisateur.getFilmsRealises()) {
+        /*for (Film film : realisateur.getFilmsRealises()) {
             filmsRealises.add(FilmMapper.filmToDto(film));
         }
 
@@ -34,7 +34,7 @@ public class RealisateurMapper {
 
         realisateurDto.setFilmsRealises(filmsRealises);
         realisateurDto.setAvis(avisDtos);
-
+*/
         return realisateurDto;
     }
 }
