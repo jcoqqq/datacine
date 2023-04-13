@@ -84,8 +84,9 @@
 <div class="ajouter-commentaire">
 <button id="bouton-afficher-commentaires">Afficher les commentaires</button>
             <!-- Div pour afficher les commentaires des autres personnes -->
+    <p th:text="${data.informationdeletecommentaire}"></p>
 
-            <div class="liste-commentaires" th:utext="${data.getlistecommentaire()}" >
+    <div class="liste-commentaires" th:utext="${data.getlistecommentaire()}" >
 
             </div>
 

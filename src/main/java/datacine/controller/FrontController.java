@@ -56,7 +56,9 @@ public class FrontController {
     public ModelAndView hello(@PathVariable(required = false,name="page") String page, HttpServletRequest request,Model model) {
         ModelAndView modelAndView = new ModelAndView();
         String verifpage = redirect.Page(page);
+
         HttpSession session = request.getSession();
+
         if(session.getAttribute("information")!=null) {
             model.addAttribute("info", session.getAttribute("information"));
             session.removeAttribute("information");
@@ -88,8 +90,9 @@ public class FrontController {
         DataFrontFilmRea dataFrontFilmRea = new DataFrontFilmRea();
         dataFrontFilmRea.setid(id);
         HttpSession session = request.getSession();
+        session.setAttribute("page","/film/"+id);
         dataFrontFilmRea.setsession(session);
-        dataFrontFilmRea.setfilm(true);
+        dataFrontFilmRea.settype("film");
         model.addAttribute("data",dataFrontFilmRea); // Ajouter un objet Data à votre modèle et vue
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("filmrea");

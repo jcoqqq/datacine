@@ -51,8 +51,14 @@ public class ProxyFrontBack {
         if(verification==true){
             session.setAttribute("utilisateur",utilisateur);
             session.setAttribute("administrateur",formulaireProxy.admin());
+            if(session.getAttribute("page")!=null) {
+                mav = new ModelAndView("redirect:"+session.getAttribute("page"));
 
-            mav = new ModelAndView("redirect:/");
+            }
+            else{
+                mav = new ModelAndView("redirect:/");
+
+            }
 
         }
         else {
@@ -63,4 +69,21 @@ public class ProxyFrontBack {
 
         return mav;
     }
+    @GetMapping(value = "/proxy/commentaire/delete")
+    public ModelAndView deleteproxyfilm(HttpServletRequest request ) {
+        String id_film=request.getParameter("id_film");
+        String id_commentaire=request.getParameter("id_commentaire");
+        String type=request.getParameter("type");
+        FormulaireProxy formulaireProxy = new FormulaireProxy();
+        formulaireProxy.setidcommentaire(id_film,id_commentaire,type);
+        String information=formulaireProxy.deletefilm();
+        HttpSession session = request.getSession();
+        session.setAttribute("information",information);
+        ModelAndView mav = new ModelAndView("redirect:/film/"+id_film);
+        return mav;
+
+
+
+    }
+
 }

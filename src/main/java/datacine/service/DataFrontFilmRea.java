@@ -10,26 +10,20 @@ public class DataFrontFilmRea {
     private String id=null;
     Dictionary<String, String> monDictionnaire   = new Hashtable<String, String>();
 
-    private Boolean film=false;
-    private Boolean acteur=false;
-    private Boolean realisateur=false;
+
     private HttpSession session;
+    private String type;
 
     public void setid(String id) {
         this.id=id;
     }
 
-    public void setfilm(boolean film) {
-        this.film=film;
+    public void settype(String type) {
+        this.type="film";
     }
-    public void setacteur(boolean acteur) {
-        this.realisateur=realisateur;
-    }
-    public void setrealisteur(boolean realisateur) {
-        this.realisateur=realisateur;
-    }
+
     public String getdescription(){
-        String chemin="/film/1";
+        String chemin="/"+type+"/1";
         String number_commentaire="12";
         String number_avis="10";
         String description="hello";
@@ -65,13 +59,24 @@ public class DataFrontFilmRea {
            }
            return text;
        }
+       public String informationdeletecommentaire(){
+            if( session.getAttribute("information")!=null) {
+                String informationdeletecommentaire= (String) session.getAttribute("information");
+                session.removeAttribute("information");
+                return informationdeletecommentaire;
+            }
+            else{
+                return null;
+            }
+       }
     public String getlistecommentaire(){
-        monDictionnaire.put("/commentairefilm/delete/0", "tres bon film ");
-        monDictionnaire.put("/commentairefilm/delete/8", "test 2");
-        monDictionnaire.put("/commentairefilm/delete/5", "tres bon réalisateur");
-        monDictionnaire.put("/commentairefilm/delete/4", "tres bon film");
-        monDictionnaire.put("/commentairefilm/delete/2", "tres bon test");
-        monDictionnaire.put("/commentairefilm/delete/13", "hello");
+        String chemin="/proxy/commentaire/delete?id_film=2&type=film&id_commentaire=";
+        monDictionnaire.put(chemin+"0","tres bon film ");
+        monDictionnaire.put(chemin+"8", "test 2");
+        monDictionnaire.put(chemin+"5", "tres bon réalisateur");
+        monDictionnaire.put(chemin+"4", "tres bon film");
+        monDictionnaire.put(chemin+"2", "tres bon test");
+        monDictionnaire.put(chemin+"13", "hello");
         String text="";
         Enumeration<String> e = monDictionnaire.keys();
         boolean admin = false;
