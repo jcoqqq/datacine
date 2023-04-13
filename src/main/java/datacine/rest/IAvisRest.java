@@ -12,8 +12,8 @@ public interface IAvisRest {
     AvisDto getAvis(@PathVariable Integer id);
 
     @PostMapping(value = "post/{note}/{des}/{user}")
-    AvisDto postAvis(@PathVariable String note,
-                         @PathVariable Float des,
+    AvisDto postAvis(@PathVariable Float note,
+                         @PathVariable String des,
                          @PathVariable String user);
 
     @DeleteMapping(value = "delete/avis")

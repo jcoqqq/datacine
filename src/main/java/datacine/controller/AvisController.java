@@ -3,6 +3,7 @@ package datacine.controller;
 import datacine.dto.AvisDto;
 import datacine.rest.IAvisRest;
 import datacine.service.AvisService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -10,7 +11,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class AvisController implements IAvisRest {
 
-    AvisService avisService;
+    @Autowired
+    private AvisService avisService;
 
     @Override
     public AvisDto getAvis(Integer id) {
@@ -18,8 +20,8 @@ public class AvisController implements IAvisRest {
     }
 
     @Override
-    public AvisDto postAvis(String note, Float des, String user) {
-        return avisService.postAvis(des, note, user);
+    public AvisDto postAvis(Float note, String des, String user) {
+        return avisService.postAvis(note, des, user);
     }
 
     @Override

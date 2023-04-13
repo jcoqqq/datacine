@@ -8,16 +8,16 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "AVIS")
-public class Avis {
+@Table(name = "AVIS_FILM")
+public class AvisFilm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private int id;
+    @Column(name = "ID_FILM_AVIS")
+    private int id_film_avis;
 
-    @Column(name = "TEXTE")
-    private String texte;
+    @Column(name = "AVIS")
+    private String avis;
 
     @Column(name = "NOTE")
     private float note;

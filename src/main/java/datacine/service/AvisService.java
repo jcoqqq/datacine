@@ -1,11 +1,13 @@
 package datacine.service;
 
-import datacine.domain.Avis;
+import datacine.domain.AvisFilm;
 import datacine.dto.AvisDto;
 import datacine.mapping.AvisMapper;
 import datacine.repository.AvisRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -16,11 +18,11 @@ public class AvisService {
     public AvisDto getAvis(Integer id) {
 
         try {
-            Iterable<Avis> avis = avisRepository.findAll();
+            Iterable<AvisFilm> avis = avisRepository.findAll();
 
-            for (Avis a : avis) {
+            for (AvisFilm a : avis) {
 
-                if (a.getId() == id)
+                if (a.getId_film_avis() == id)
                     return AvisMapper.avisToDto(a);
                 else
                     return new AvisDto();
@@ -35,11 +37,12 @@ public class AvisService {
 
     public AvisDto postAvis(Float note, String des, String user) {
 
-        Avis avis = new Avis();
-        avis.setNote(note);
-        avis.setTexte(user + des);
+        AvisFilm avisFilm = new AvisFilm();
+        avisFilm.setNote(note);
+        avisFilm.setAvis(user + des);
+        avisFilm.setId_film_avis(10);
 
-        return AvisMapper.avisToDto(avisRepository.save(avis));
+        return AvisMapper.avisToDto(avisRepository.save(avisFilm));
 
     }
 

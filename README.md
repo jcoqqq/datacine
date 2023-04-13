@@ -1,5 +1,5 @@
 # Dataciné avec Spring Boot et Java EE
-Cette application est une plateforme qui permet de recenser des films, des acteurs et des réalisateurs, et de laisser des avis sur les films. Les utilisateurs peuvent créer un compte, se connecter et laisser des commentaires sur les films qu'ils ont vus.
+Cette application est une plateforme qui permet de recenser des films, des acteurs et des réalisateurs, et de laisser des avisFilm sur les films. Les utilisateurs peuvent créer un compte, se connecter et laisser des commentaires sur les films qu'ils ont vus.
 
 # Technologies utilisées
 - Spring Boot
@@ -13,8 +13,8 @@ Inscription et connexion des utilisateurs
 Ajout, modification et suppression de films, acteurs et réalisateurs
 Recherche de films, acteurs et réalisateurs
 Affichage de la liste des films, acteurs et réalisateurs
-Affichage des détails d'un film, avec les avis des utilisateurs
-Laisser des avis sur les films
+Affichage des détails d'un film, avec les avisFilm des utilisateurs
+Laisser des avisFilm sur les films
 #Comment exécuter l'application
 # Prérequis
 - Java 8 ou supérieur

@@ -1,12 +1,11 @@
 package datacine.repository;
 
-import datacine.domain.Avis;
+import datacine.domain.AvisFilm;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface AvisRepository extends CrudRepository<Avis, Integer> {
+public interface AvisRepository extends CrudRepository<AvisFilm, Integer> {
 
     //Boolean deleteById(int id);
 }

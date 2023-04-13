@@ -1,9 +1,6 @@
 package datacine.mapping;
 
-import datacine.domain.Avis;
-import datacine.domain.Film;
 import datacine.domain.Realisateur;
-import datacine.dto.AvisDto;
 import datacine.dto.FilmDto;
 import datacine.dto.RealisateurDto;
 
