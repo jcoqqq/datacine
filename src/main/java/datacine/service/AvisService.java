@@ -15,9 +15,11 @@ public class AvisService {
 
     final AvisRepository avisRepository;
 
+
+
     public AvisDto getAvis(Integer id) {
 
-        try {
+       try {
             Iterable<AvisFilm> avis = avisRepository.findAll();
 
             for (AvisFilm a : avis) {
@@ -28,11 +30,11 @@ public class AvisService {
                     return new AvisDto();
             }
 
-        }
+       }
         catch (Exception e) {
-            return new AvisDto();
+           return new AvisDto();
         }
-        return new AvisDto();
+       return new AvisDto();
     }
 
     public AvisDto postAvis(Float note, String des, String user) {

@@ -2,6 +2,10 @@ package datacine.service;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -23,16 +27,38 @@ public class DataFrontFilmRea {
     }
 
     public String getdescription(){
-        String chemin="/"+type+"/1";
-        String number_commentaire="12";
-        String number_avis="10";
-        String description="hello";
+        String chemin="/"+type+"/"+id;
+        String urlStr = "http://localhost:8081/backutilisateur/description?id="+id;
+
+        String httpResponse = "[]";
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+
+            int status = con.getResponseCode();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+
+            System.out.println("Status: " + status);
+            System.out.println("Réponse: " + content.toString());
+            httpResponse = content.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String description=httpResponse;
 
         String text="<div class=\"images\">\n" +
                 "    <img class=\"image-miniature\" src=\"/image"+chemin+"\" alt=\"Image 1\">\n" +
                 "    <div>\n" +
-                "        <p>"+number_commentaire+" commentaires</p>\n" +
-                "        <p>"+number_avis+" avis</p>\n" +
+
 
                 "        <p>"+description+"</p>\n" +
                 "    </div>\n" +
@@ -70,13 +96,52 @@ public class DataFrontFilmRea {
             }
        }
     public String getlistecommentaire(){
-        String chemin="/proxy/commentaire/delete?id_film=2&type=film&id_commentaire=";
-        monDictionnaire.put(chemin+"0","tres bon film ");
-        monDictionnaire.put(chemin+"8", "test 2");
-        monDictionnaire.put(chemin+"5", "tres bon réalisateur");
-        monDictionnaire.put(chemin+"4", "tres bon film");
-        monDictionnaire.put(chemin+"2", "tres bon test");
-        monDictionnaire.put(chemin+"13", "hello");
+       String chemin="http://localhost:8081/proxy/commentaire/delete?id_film=2&type=film&id_commentaire=";
+        String urlStr = "http://localhost:8081/backutilisateur/getcommentaire?id="+id;
+
+        String httpResponse = "[]";
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+
+            int status = con.getResponseCode();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+
+            System.out.println("Status: " + status);
+            System.out.println("Réponse: " + content.toString());
+            httpResponse = content.toString();
+            System.out.println(httpResponse);
+
+        Dictionary<String, String> monDictionnaire = new Hashtable<String, String>();
+
+        // Division de la chaîne JSON en paires clé-valeur
+        String[] keyValuePairs = httpResponse.replace("{", "")
+                .replace("}", "").replace("\"","")
+                .split(",");
+
+        // Parcours des paires clé-valeur
+        for (String pair : keyValuePairs) {
+            // Division de chaque paire en clé et valeur
+            String[] keyValue = pair.split(":");
+            String key = keyValue[0];
+            String value = keyValue[1]+" note : "+keyValue[2]+"/5";
+
+            // Construction de la clé modifiée
+            String modifiedKey = chemin+key;
+
+            // Ajout de la paire clé-valeur au dictionnaire
+            monDictionnaire.put(modifiedKey, value);
+
+        }
         String text="";
         Enumeration<String> e = monDictionnaire.keys();
         boolean admin = false;
@@ -98,6 +163,10 @@ public class DataFrontFilmRea {
 
         }
         return text;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     public String verifsession(){
         String user= (String) session.getAttribute("utilisateur");

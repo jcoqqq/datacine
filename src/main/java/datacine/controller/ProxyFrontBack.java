@@ -85,6 +85,29 @@ public class ProxyFrontBack {
 
 
     }
+    @PostMapping(value = "/proxy/commentaire/add")
+    public ModelAndView insertproxyfilm(HttpServletRequest request ) {
+       // String id_film=request.getParameter("id_film");
+        HttpSession session = request.getSession();
+        String id_film="1";
+        if(session.getAttribute("page")!=null){
+            id_film= (String) session.getAttribute("page");
+            System.out.println(id_film);
+
+            id_film=id_film.split("/")[2];
+        }
+        String description=request.getParameter("description");
+        String note=request.getParameter("note");
+        String type=request.getParameter("type");
+        FormulaireProxy formulaireProxy = new FormulaireProxy();
+        String information=formulaireProxy.insertfilm(description,note,id_film);
+        session.setAttribute("information", information);
+        ModelAndView mav = new ModelAndView("redirect:/film/"+id_film);
+        return mav;
+
+
+
+    }
 
 
 }

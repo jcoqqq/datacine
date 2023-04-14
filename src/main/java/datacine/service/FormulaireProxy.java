@@ -3,7 +3,6 @@ package datacine.service;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
 
 public class FormulaireProxy {
@@ -93,8 +92,67 @@ public class FormulaireProxy {
         this.type=type;
         this.idfilm=idfilm;
     }
+    public String insertfilm(String description, String note, String id_film) {
+        String urlStr = "http://localhost:8081/backutilisateur/insercommentaire?id="+id_film+"&note="+note+"&description="+description;
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+
+            int status = con.getResponseCode();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+
+            System.out.println("Status: " + status);
+            System.out.println("Réponse: " + content.toString());
+            if(content.toString().contains("compte cree")){
+                formulairevalide=true;
+            }
+          //  return "delete "+idcommentaire+" "+type;
+            return "commentaire ajoute";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "error";
+    }
 
     public String deletefilm() {
-        return "delete "+idcommentaire+" "+type;
+        String urlStr = "http://localhost:8081/backutilisateur/delcommentaire?id=" + idcommentaire  + "&id_film=" +idfilm;
+
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("DELETE");
+
+            int status = con.getResponseCode();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+
+            System.out.println("Status: " + status);
+            System.out.println("Réponse: " + content.toString());
+            if(content.toString().contains("compte cree")){
+                formulairevalide=true;
+            }
+            return "delete "+idcommentaire+" "+type;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         return "error";
     }
 }

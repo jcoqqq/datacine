@@ -45,18 +45,21 @@
 
 
 </div>
+<!---
 <div class="imagefilmrea">
     <div class="scroll" th:utext="${data.getreafilm()}">
 
 
     </div>
 </div>
+
+--->
         <!-- Div pour ajouter un commentaire -->
         <div class="commentaires">
 
             <div class="ajouter-commentaire" th:if="${data.verifsession()!=null}">
                 <button id="toggle-comment">Écrire un commentaire</button>
-                <form action="/v1/add/film" method="post" id="comment-form">
+                <form action="/proxy/commentaire/add" method="post" id="comment-form">
                     <textarea name="description" placeholder="Ajouter un commentaire"></textarea>
                     <div>
                         <!-- Notation en étoiles -->

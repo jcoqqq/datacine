@@ -68,10 +68,18 @@ public class FrontController {
     }
 
     @RequestMapping(value = "/search/{search}")
-    public ModelAndView search(@PathVariable(required = false,name="search") String search, Model model) {
+    public ModelAndView search(@PathVariable(required = false,name="search") String search, Model model, HttpServletRequest request) {
 
         DataFrontAcceuil data = new DataFrontAcceuil();
         data.search(search);
+        HttpSession session = request.getSession();
+        data.setsession(session);
+        model.addAttribute("data", data);
+
+        if(session.getAttribute("information")!=null) {
+            model.addAttribute("info", session.getAttribute("information"));
+            session.removeAttribute("information");
+        }
         model.addAttribute("data", data);
         // model.addAttribute("data", new Datafront()); // Ajouter un objet Data à votre modèle et vue
 
@@ -106,7 +114,7 @@ public class FrontController {
 
     @RequestMapping(value = "/image/film/{id}")
     public ResponseEntity<byte[]> getimage(@PathVariable(name="id") String id) throws IOException{
-        String fichier = redirect.getnameimagefile(id);
+       String fichier = redirect.getnameimagefile(id);
         File img = new File("src/main/resources/templates/images/films/"+fichier);
         return ResponseEntity.ok().contentType(MediaType.valueOf(FileTypeMap.getDefaultFileTypeMap().getContentType(img))).body(Files.readAllBytes(img.toPath()));
     }

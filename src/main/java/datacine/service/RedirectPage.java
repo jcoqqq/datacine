@@ -21,7 +21,7 @@ public class RedirectPage {
             } else {
                 int index = page.indexOf(home);
                 if (index == -1) {
-                    return "index";
+                    return "erreur404";
                 } else {
                     return page.get(index);
                 }
@@ -62,7 +62,7 @@ public class RedirectPage {
     }
 
     public String getnameimagefile(String id) {
-        return "sonic.png";
+        return id+".png";
     }
     public String getnameimageacteur(String id) {
         return "sonic.png";
